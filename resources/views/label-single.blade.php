@@ -10,8 +10,19 @@
         </h1>
         <p>What will you accomplish today?</p>
 
-        @foreach ($tasks as $task)
+        @forelse ($tasks as $task)
             <x-task :task="$task"></x-task>
-    @endforeach
+    @empty
+            <div class="border-bottom"><p class="fw-600">No tasks, yet. Create one below!</p></div>
+    @endforelse
+
+        <a href="#" id="addTaskFromLabel" data-bs-toggle="modal" data-bs-target="#addTask"
+           class="btn btn-link text-s_theme text-decoration-none px-0"><i class="fas fa-plus-circle me-2"></i> New task</a>
+
+    <script>
+        $(document).ready(function () {
+            $("#label_id option[value='{{$label->id}}']").prop('selected', true);
+        });
+    </script>
 
 @endsection
