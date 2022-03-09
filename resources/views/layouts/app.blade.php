@@ -91,7 +91,7 @@
                             </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Add Task</button>
+                            <button type="submit" class="btn bg-s_theme text-white">Add Task</button>
                         </div>
                         </form>
                     </div>
