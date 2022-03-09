@@ -1,5 +1,5 @@
 <div class="card border-0 rounded-0 border-bottom bg-transparent task">
-    <div class="card-body">
+    <div class="card-body px-0">
         <div class="d-flex">
             <form method="post" action="{{url('tasks', [$task->id])}}">
                 @csrf
