@@ -62,6 +62,58 @@
         }
     }
 
+    .bg-s_theme {
+        background-color: var(--theme-color);
+    }
+
+    .text-s_theme {
+        color: var(--theme-color);
+    }
+
+    #schedule-list>.card:first-child .card-header {
+        background-color: var(--theme-color);
+        color: #fff;
+    }
+
+    #schedule-list>.card .fa-star{
+        display: none;
+    }
+
+    #schedule-list>.card:first-child .fa-star{
+        display: inline-block;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--theme-color);
+        border-color: var(--theme-color);
+    }
+
+    .task .actions {
+        display: none;
+    }
+
+    .task:hover .actions {
+        display: flex;
+    }
+
+    .swatch {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .app-sidebar {
+        overflow: hidden;
+    }
+
+    .app-sidebar:hover {
+        overflow-y: auto;
+    }
+
 }
 
 // Bootstrap

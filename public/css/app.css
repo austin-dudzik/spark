@@ -64,6 +64,47 @@
   counter-reset: percentage var(--value);
   content: counter(percentage) "%";
 }
+#app .bg-s_theme {
+  background-color: var(--theme-color);
+}
+#app .text-s_theme {
+  color: var(--theme-color);
+}
+#app #schedule-list > .card:first-child .card-header {
+  background-color: var(--theme-color);
+  color: #fff;
+}
+#app #schedule-list > .card .fa-star {
+  display: none;
+}
+#app #schedule-list > .card:first-child .fa-star {
+  display: inline-block;
+}
+#app .form-check-input:checked {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+#app .task .actions {
+  display: none;
+}
+#app .task:hover .actions {
+  display: flex;
+}
+#app .swatch {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+#app .app-sidebar {
+  overflow: hidden;
+}
+#app .app-sidebar:hover {
+  overflow-y: auto;
+}
 
 /*!
  * AspStudio v3.0.0 (https://seantheme.com/asp-studio/)

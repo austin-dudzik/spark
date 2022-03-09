@@ -29,55 +29,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    @auth
     <style>
         :root {
             --theme-color: {{\Illuminate\Support\Facades\Auth::user()->theme}};
         }
-
-        .bg-s_theme {
-            background-color: var(--theme-color);
-        }
-
-        .text-s_theme {
-            color: var(--theme-color);
-        }
-
-        #schedule-list>.card:first-child .card-header {
-            background-color: var(--theme-color);
-            color: #fff;
-        }
-
-        #schedule-list>.card .fa-star{
-            display: none;
-        }
-
-        #schedule-list>.card:first-child .fa-star{
-            display: inline-block;
-        }
-
-        .form-check-input:checked {
-            background-color: var(--theme-color);
-            border-color: var(--theme-color);
-        }
-
-        .task .actions {
-            display: none;
-        }
-
-        .task:hover .actions {
-            display: flex;
-        }
-
-        .swatch {
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            color: #fff;
-            cursor: pointer;
-        }
     </style>
+        @endauth
 
 </head>
 <body>
@@ -116,7 +74,8 @@
 
                             <div class="form-group mb-2">
                                 <label for="label_id">Label</label>
-                                <select class="form-control" name="label_id" id="label_id">
+                                <select class="form-select" name="label_id" id="label_id">
+                                    <option value="" {{old('label_id') == "" ? 'selected' : '' }}>Uncategorized</option>
                                     @foreach($labels as $label)
                                         <option
                                             value="{{ $label->id }}" {{old('label_id') == $label->id ? 'selected' : '' }}>{{ $label->name }}</option>
@@ -141,7 +100,6 @@
             </div>
         </div>
         <script>@if($errors->create->any()) $(document).ready(()=>{$("#addTask").modal("show")}) @endif</script>
-
 
             <!-- Add label modal -->
             <div class="modal fade" id="addLabel">
@@ -207,7 +165,7 @@
                                 <input type="hidden" name="color" id="color" value="#b8255f">
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn bg-s_theme text-white">Add Task</button>
+                                    <button type="submit" class="btn bg-s_theme text-white">Add Label</button>
                                 </div>
                             </form>
                         </div>
