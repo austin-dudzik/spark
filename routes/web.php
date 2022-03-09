@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+    Route::get('/notes', [NotesController::class, 'index'])->name('notes');
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::put('/settings/update', SettingsController::class . '@update');
 });

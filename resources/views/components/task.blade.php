@@ -21,7 +21,7 @@
                         </p>
                     @endif
                     @if($task->due_date)
-                        <p class="small @if($task->due_date->isPast() && is_null($task->completed)) text-danger @else text-muted @endif mb-0">
+                        <p class="small @if($task->due_date->isPast() && is_null($task->completed)) text-danger @elseif($task->due_date->isToday() && is_null($task->completed)) text-success @else text-muted @endif mb-0">
                             <i class="far fa-calendar me-1"></i> {{$task->due_date->format('M j g:i A')}}
                         </p>
                     @endif
@@ -51,6 +51,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
 
 
                 <form method="post" action="{{url('tasks', [$task->id])}}">

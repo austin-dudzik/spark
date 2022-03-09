@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Settings;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Contracts\Support\Renderable;
@@ -12,15 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the settings page.

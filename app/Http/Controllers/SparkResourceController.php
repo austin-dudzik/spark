@@ -54,7 +54,7 @@ class SparkResourceController extends Controller
             'title' => 'required',
             'description' => 'present',
             'label_id' => 'integer|min:0',
-            'due_date' => 'date',
+            'due_date' => 'date|nullable',
         ]);
 
         // Assign the user ID to the request
@@ -118,6 +118,7 @@ class SparkResourceController extends Controller
         } else {
             $fields = $request->validateWithBag('form_' . $task->id, [
                 'title' => 'required',
+                'description' => 'present',
                 'due_date' => 'required'
             ]);
             // Update the task

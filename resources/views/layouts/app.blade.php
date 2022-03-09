@@ -28,6 +28,39 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        :root {
+            --theme-color: {{\Illuminate\Support\Facades\Auth::user()->theme}};
+        }
+
+        .bg-s_theme {
+            background-color: var(--theme-color);
+        }
+
+        .text-s_theme {
+            color: var(--theme-color);
+        }
+
+        #schedule-list>.card:first-child .card-header {
+            background-color: var(--theme-color);
+            color: #fff;
+        }
+
+        #schedule-list>.card .fa-star{
+            display: none;
+        }
+
+        #schedule-list>.card:first-child .fa-star{
+            display: inline-block;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--theme-color);
+            border-color: var(--theme-color);
+        }
+    </style>
+
 </head>
 <body>
 <div id="app">
@@ -50,7 +83,7 @@
                             <div class="form-group mb-2">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{old('title')}}">
-                                @error('create', 'title')
+                                @error('title', 'create')
                                 <p class="small text-danger">{{$message}}</p>
                                 @enderror
                             </div>
@@ -58,7 +91,7 @@
                             <div class="form-group mb-2">
                                 <label for="description">Description</label>
                                 <textarea name="description" id="description" class="form-control">{{old('description')}}</textarea>
-                                @error('create', 'description')
+                                @error('description', 'create')
                                 <p class="small text-danger">{{$message}}</p>
                                 @enderror
                             </div>
@@ -76,19 +109,13 @@
                             <div class="form-group mb-2">
                                 <label for="due_date">Due Date</label>
                                 <input type="datetime-local" name="due_date" id="due_date" class="form-control" value="{{old('due_date')}}">
-                                @error('create', 'due_date')
+                                @error('due_date', 'create')
                                 <p class="small text-danger">{{$message}}</p>
                                 @enderror
                             </div>
 
-                            <div class="form-group mb-2">
-                                <button type="submit" class="btn btn-dark">Add Task</button>
-                            </div>
-
-                        </form>
-
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Update Task</button>
+                            <button type="submit" class="btn btn-primary">Add Task</button>
                         </div>
                         </form>
                     </div>

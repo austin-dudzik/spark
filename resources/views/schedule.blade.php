@@ -5,39 +5,13 @@
 
 @section('content')
 
-    <style>
-        :root {
-            --user-theme-bg-color: {{\Illuminate\Support\Facades\Auth::user()->theme}};
-        }
-
-        .header {
-            background-color: var(--user-theme-bg-color);
-        }
-
-        #schedule-list>.card:first-child .card-header
-            background-color: var(--user-theme-bg-color);
-            color: #fff;
-        }
-
-        #schedule-list>.card .fa-star{
-            display: none;
-        }
-
-        #schedule-list>.card:first-child .fa-star{
-            display: inline-block;
-        }
-
-
-    </style>
-
-
     <div class="w-75 mx-auto">
         <h3 class="mb-3">Schedule</h3>
     <div id="schedule-list">
     @include('schedule-list')
     </div>
 
-        <button class="loadMore">Load more</button>
+        <button class="loadMore btn btn-primary w-50">Load more</button>
 
     </div>
     <script>

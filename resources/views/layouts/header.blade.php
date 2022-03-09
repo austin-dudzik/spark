@@ -1,6 +1,6 @@
-<div class="app-header bg-{{Auth::user()->theme}}">
+<div class="app-header bg-s_theme">
     <div class="brand">
-        <a href="{{ url('/tasks') }}" class="brand-logo ms-4 text-white">
+        <a href="{{ url('/') }}" class="brand-logo ms-4 text-white">
             <img src="{{url('img/spark.png')}}" class="me-3" alt=""> {{ config('app.name', 'Laravel') }}
         </a>
     </div>
@@ -19,12 +19,11 @@
             </div>
         </div>
 
-
         <div class="menu-item dropdown">
 
             <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
                 <div class="text-white fw-600">
-                    <i class="far fa-circle-three-quarters nav-icon text-white me-2"></i> 0/5
+                    <i class="far fa-circle-three-quarters nav-icon text-white me-2"></i> {{count($tasksToday)}}/{{auth()->user()->daily_goal}}
                 </div>
             </a>
 
@@ -40,6 +39,12 @@
                     <p class='text-muted text-center mt-4'>No tasks completed, yet.</p>
                 </div>
             </div>
+        </div>
+
+        <div class="menu-item">
+                <div class="text-white fw-600">
+                    <i class="fas fa-question-circle nav-icon text-white me-2"></i>
+                </div>
         </div>
 
         <div class="menu-item dropdown">
@@ -65,4 +70,5 @@
 
         </div>
     </div>
+
 </div>

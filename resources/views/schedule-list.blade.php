@@ -1,9 +1,9 @@
 @php
 
     $start = new DateTime();
-    $start->modify('+' . (($page-1) * 30) . ' days');
+    $start->modify('+' . (($page-1) * 14) . ' days');
     $end = new DateTime();
-    $end->modify('+' . ($page * 30) . ' days');
+    $end->modify('+' . ($page * 14) . ' days');
 
 @endphp
 
@@ -38,7 +38,7 @@
             @endif
             <div class="p-3">
                 <a href="#"
-                   class="addSched btn btn-link text-{{\Illuminate\Support\Facades\Auth::user()->theme}} text-decoration-none fw-600 btn-sm p-0"
+                   class="addSched btn btn-link text-s_theme text-decoration-none fw-600 btn-sm p-0"
                    data-bs-toggle="modal" data-bs-target="#addTask"
                    data-date="@php echo $i->format('Y-m-d\TH:i') @endphp"><i class="fas fa-plus me-1"></i> Add Task</a>
             </div>

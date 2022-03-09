@@ -62,7 +62,7 @@
                         style, mood, and personality.</p>
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="primary" role="button">
+                            <div class="card" data-theme="#ff822d" role="button">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="red">
+                            <div class="card" data-theme="#e6180d">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="blue-500">
+                            <div class="card" data-theme="#1f6bff">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="yellow-600">
+                            <div class="card" data-theme="#e6b800">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="teal">
+                            <div class="card" data-theme="#1db588">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="cyan">
+                            <div class="card" data-theme="#2babe6">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="pink">
+                            <div class="card" data-theme="#c12e77">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card" data-theme="gray">
+                            <div class="card" data-theme="#4d6593">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3 mb-3">
-                            <div class="card" data-theme="black">
+                            <div class="card" data-theme="#000000">
                                 <div class="card-body fw-600 px-3 py-2">
                                     <div class="d-flex justify-content-between">
                                 <span>
@@ -176,7 +176,7 @@
                         @method('put')
                         <input type="hidden" name="type" value="theme">
                         <input type="hidden" name="theme" id="theme" value="{{ Auth::user()->theme }}">
-                        <button type="submit" class="btn bg-{{Auth::user()->theme}} text-white disabled"
+                        <button type="submit" class="btn bg-s_theme text-white disabled"
                                 id="theme-change">Apply Theme
                         </button>
                     </form>
@@ -218,7 +218,7 @@
 
                         <div class="form-group mb-2">
                             <input type="hidden" name="type" value="account">
-                            <button type="submit" class="btn bg-{{Auth::user()->theme}} text-white">Save changes
+                            <button type="submit" class="btn bg-s_theme text-white">Save changes
                             </button>
                         </div>
 
@@ -279,7 +279,7 @@
 
                         <div class="form-group mb-2">
                             <input type="hidden" name="type" value="password">
-                            <button type="submit" class="btn bg-{{Auth::user()->theme}} text-white">Set password
+                            <button type="submit" class="btn bg-s_theme text-white">Set password
                             </button>
                         </div>
 
@@ -379,7 +379,7 @@
                         @method('put')
                         <input type="hidden" name="type" value="theme">
                         <input type="hidden" name="theme" id="theme" value="{{ Auth::user()->theme }}">
-                        <button type="submit" class="btn bg-{{Auth::user()->theme}} text-white disabled"
+                        <button type="submit" class="btn bg-s_theme text-white disabled"
                                 id="theme-change">Apply Theme
                         </button>
                     </form>
@@ -395,7 +395,7 @@
         });
 
         // Add checkmark to active theme
-        $("[data-theme='{{ Auth::user()->theme }}']").find("i.fa-check").removeClass("d-none");
+        $("[data-theme='{{ auth()->user()->theme }}']").find("i.fa-check").removeClass("d-none");
         // On theme change
         $('[data-theme]').on('click', function () {
             // Hide all checkmarks

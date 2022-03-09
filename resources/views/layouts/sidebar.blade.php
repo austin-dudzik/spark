@@ -4,28 +4,35 @@
             <div class="menu-header">Navigation</div>
             <div class="menu-item">
                 <a href="{{route('index')}}"
-                   class="menu-link @if(Request::route()->getName() == "index")bg-white fw-bold @endif">
+                   class="py-2 menu-link @if(Request::route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fa fa-inbox"></i></span>
                     <span class="menu-text">Inbox</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="menu-link @if(Request::route()->getName() == null)bg-white fw-bold @endif">
+                   class="py-2 menu-link @if(Request::route()->getName() == null)bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fa fa-calendar-alt"></i></span>
                     <span class="menu-text">Today</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="menu-link @if(Request::route()->getName() == "schedule")bg-white fw-bold @endif">
+                   class="py-2 menu-link @if(Request::route()->getName() == null)bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-list"></i></span>
                     <span class="menu-text">Schedule</span>
                 </a>
             </div>
             <div class="menu-item">
+                <a href="{{route('schedule')}}"
+                   class="py-2 menu-link @if(Request::route()->getName() == "schedule")bg-s_theme text-white fw-bold @endif">
+                    <span class="menu-icon"><i class="fas fa-note"></i></span>
+                    <span class="menu-text">Notes</span>
+                </a>
+            </div>
+            <div class="menu-item">
                 <a href="{{route('completed')}}"
-                   class="menu-link @if(Request::route()->getName() == "completed")bg-white fw-bold @endif">
+                   class="py-2 menu-link @if(Request::route()->getName() == "completed")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-check-circle"></i></span>
                     <span class="menu-text">Completed</span>
                 </a>
@@ -64,7 +71,7 @@
                         <h5>Almost there!</h5>
                         <p>Complete <strong>{{$ratio}}</strong> more task today to reach your goal.</p>
                     @endif
-                    <a href="#" class="btn bg-{{Auth::user()->theme}} text-white w-100"><i
+                    <a href="#" class="btn bg-s_theme text-white w-100"><i
                             class="fal fa-pencil me-2"></i> Edit goal</a>
                 </div>
             </div>

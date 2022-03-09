@@ -59,13 +59,14 @@ class Task extends Model
 
     public static function schedule($page = 1){
         $start = new DateTime();
-        $start->modify('+' . (($page-1) * 30) . ' days');
+        $start->modify('+' . (($page-1) * 14) . ' days');
         $end = new DateTime();
-        $end->modify('+' . ($page * 30) . ' days');
+        $end->modify('+' . ($page * 14) . ' days');
 
         return static::query()
             ->where('user_id', '=', Auth::user()->id)
             ->whereBetween('due_date', [$start->format('Y-m-d'), $end->format('Y-m-d')])
+            ->whereNull('completed')
             ->orderBy('due_date', 'desc')
             ->with(['label'])
             ->get()
