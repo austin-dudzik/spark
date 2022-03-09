@@ -3,11 +3,16 @@
         <div class="menu">
             <div class="menu-header">Navigation</div>
             <div class="menu-item">
-                <a href="{{route('index')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
-                    <span class="menu-icon"><i class="fa fa-inbox"></i></span>
-                    <span class="menu-text">Inbox</span>
-                </a>
+                    <a href="{{route('index')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
+                        <div>
+                <span class="menu-icon d-inline-block"><i class="fa fa-inbox"></i>
+                                  </span>
+                            <span class="menu-text">Inbox</span>
+                        </div>
+                        @if($inboxTasks->count() > 0)
+                            <div class="text-muted">{{count($inboxTasks)}}</div>
+                        @endif
+                    </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
@@ -54,10 +59,15 @@
 
             @foreach($labels as $label)
                 <div class="menu-item ">
-                    <a href="{{url('labels/' . $label->id)}}" class="menu-link">
-                <span class="menu-icon"><i class="fa fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
+                    <a href="{{url('labels/' . $label->id)}}" class="menu-link justify-content-between">
+                        <div>
+                <span class="menu-icon d-inline-block"><i class="fa fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
                                   </span>
                         <span class="menu-text">{{$label->name}}</span>
+                        </div>
+                        @if($label->tasks->count() > 0)
+                            <div class="text-muted">{{count($label->tasks)}}</div>
+                        @endif
                     </a>
                 </div>
             @endforeach
