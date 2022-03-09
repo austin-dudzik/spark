@@ -20,9 +20,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('theme')->default('primary');
-            $table->integer('daily_goal')->default(0);
-            $table->integer('weekly_goal')->default(0);
+            $table->string('theme')->default('#ff822d');
+            $table->integer('daily_goal')->default(5);
+            $table->integer('weekly_goal')->default(5);
             $table->timestamps();
         });
     }

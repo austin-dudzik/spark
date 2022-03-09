@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description')->nullable();
             $table->foreignId('label_id')->nullable();
-            $table->integer('status')->default(0);
             $table->dateTime('completed')->nullable();
             $table->dateTime('due_date')->nullable();
             $table->timestamps();

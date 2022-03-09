@@ -14,8 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $ts = new TaskSeeder();
-        $ts->run();
+
+        (new LabelSeeder())->run();
+        (new TaskSeeder())->run();
+        (new UserSeeder())->run();
         // \App\Models\User::factory(10)->create();
     }
 }
