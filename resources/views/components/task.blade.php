@@ -34,8 +34,6 @@
             </div>
             <div class="ms-auto actions">
                 <button class="btn btn-link text-muted p-0 px-2" data-bs-toggle="modal" data-bs-target="#editModal-{{$task->id}}"><i class="far fa-pencil" data-bs-placement="top" data-bs-toggle="tooltip" title="test"></i></button>
-                <button class="btn btn-link text-muted p-0 px-2"><i class="far fa-copy"></i></button>
-                <button class="btn btn-link text-muted p-0 px-2"><i class="far fa-alarm-clock"></i></button>
                 <button class="btn btn-link text-danger p-0 px-2" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$task->id}}"><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
