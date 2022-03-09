@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<!-- Edit modal -->
+<!-- Edit task modal -->
 <div class="modal fade" id="editModal-{{$task->id}}">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -49,8 +49,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-
 
                 <form method="post" action="{{url('tasks', [$task->id])}}">
                     @csrf
@@ -73,7 +71,8 @@
 
                     <div class="form-group mb-2">
                         <label for="label_id">Label</label>
-                        <select class="form-control" name="label_id" id="label_id">
+                        <select class="form-select" name="label_id" id="label_id">
+                            <option value="" {{$task->label_id == "" ? 'selected' : '' }}>Uncategorized</option>
                             @foreach($labels as $label)
                                 <option
                                     value="{{ $label->id }}" {{$task->label_id == $label->id ? 'selected' : '' }}>{{ $label->name }}</option>
@@ -89,12 +88,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group mb-2">
-                        <button type="submit" class="btn btn-dark">Add Task</button>
-                    </div>
-
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update Task</button>
+                    <button type="submit" class="btn bg-s_theme text-white">Update Task</button>
                 </div>
                 </form>
             </div>
