@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <div class="container">
-        <h1 class="mb-3 fw-bolder">
+    <div class="w-75 mx-auto">
+        <h1 class="h3 fw-bolder">
             Search for "{{ $filters['q'] }}"
         </h1>
         <p>We found {{count($tasks)}} tasks that match your search...</p>
