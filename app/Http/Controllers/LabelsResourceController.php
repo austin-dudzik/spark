@@ -135,17 +135,14 @@ class LabelsResourceController extends Controller
     /**
      * Remove the specified task from storage.
      *
-     * @param Task $task
+     * @param Label $label
      */
-    public function destroy(Task $task)
+    public function destroy(Label $label)
     {
-        // Find existing task
-        $toDelete = Task::find($task->id);
-
-        // Delete the task
-        $toDelete->delete();
+        // Find and delete existing label
+        $toDelete = Label::find($label->id)->delete();
 
         // Redirect to index with success
-        return redirect('/tasks')->with('success', 'Task deleted successfully');
+        return redirect('/labels')->with('success', 'Label deleted successfully');
     }
 }
