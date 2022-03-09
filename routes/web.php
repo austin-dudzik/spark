@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CompletedController;
+use App\Http\Controllers\LabelsResourceController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SparkResourceController;
@@ -24,13 +26,24 @@ Auth::routes();
 
 // Group all routes and protect them
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/', [SparkResourceController::class, 'index'])->name('index');
+
     Route::resource('/tasks', SparkResourceController::class);
+
     Route::resource('/search', SearchController::class);
+
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+
     Route::get('/notes', [NotesController::class, 'index'])->name('notes');
+
+    Route::resource('/labels', LabelsResourceController::class);
+
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::put('/settings/update', SettingsController::class . '@update');
+
 });

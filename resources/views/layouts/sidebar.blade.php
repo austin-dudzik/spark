@@ -57,9 +57,9 @@
 
             <div class="card mt-auto mx-3 p-2">
                 <div class="card-body">
-                    @php use Illuminate\Support\Facades\Auth;$ratio = (count($tasksToday) / Auth::user()->daily_goal) * 100 @endphp
-                    @if($ratio === 100)
-                        <p class="h1">🎉</p>
+                    @php $ratio = (count($tasksToday) / auth()->user()->daily_goal) * 100 @endphp
+                    @if($ratio >= 100)
+                        <p class="h1 mb-3">🎉</p>
                         <h5>You did it!</h5>
                         <p>You successfully reached your task goal for today. Good job!</p>
                     @elseif($ratio === 0)
