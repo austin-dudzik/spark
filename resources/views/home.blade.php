@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container w-75 mx-auto">
         <h1 class="mb-3 fw-bolder">
             Inbox
         </h1>

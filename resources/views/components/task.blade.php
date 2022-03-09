@@ -1,4 +1,4 @@
-<div class="card border-0 rounded-0 border-bottom bg-transparent">
+<div class="card border-0 rounded-0 border-bottom bg-transparent task">
     <div class="card-body">
         <div class="d-flex">
             <form method="post" action="{{url('tasks', [$task->id])}}">
@@ -32,11 +32,11 @@
                         @endif
                 </div>
             </div>
-            <div class="ms-auto">
-                <button class="btn btn-link text-muted" data-bs-toggle="modal" data-bs-target="#editModal-{{$task->id}}"><i class="far fa-pencil" data-bs-placement="top" data-bs-toggle="tooltip" title="test"></i></button>
-                <button class="btn btn-link text-muted"><i class="far fa-copy"></i></button>
-                <button class="btn btn-link text-muted"><i class="far fa-alarm-clock"></i></button>
-                <button class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$task->id}}"><i class="far fa-trash-alt"></i></button>
+            <div class="ms-auto actions">
+                <button class="btn btn-link text-muted p-0 px-2" data-bs-toggle="modal" data-bs-target="#editModal-{{$task->id}}"><i class="far fa-pencil" data-bs-placement="top" data-bs-toggle="tooltip" title="test"></i></button>
+                <button class="btn btn-link text-muted p-0 px-2"><i class="far fa-copy"></i></button>
+                <button class="btn btn-link text-muted p-0 px-2"><i class="far fa-alarm-clock"></i></button>
+                <button class="btn btn-link text-danger p-0 px-2" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$task->id}}"><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@
 
                     <div class="form-group mb-2">
                         <label for="due_date">Due Date</label>
-                        <input type="datetime-local" name="due_date" id="due_date" class="form-control" value="{{$task->due_date->format('Y-m-d\TH:i')}}">
+                        <input type="datetime-local" name="due_date" id="due_date" class="form-control" value="@if($task->due_date){{$task->due_date->format('Y-m-d\TH:i')}}@endif">
                         @error('due_date', 'form_' . $task->id)
                         <p class="small text-danger">{{$message}}</p>
                         @enderror
@@ -110,7 +110,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Task</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-exclamation-triangle me-1 text-danger"></i> Delete Task</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -119,7 +119,7 @@
                     @method('delete')
                     <p>Are you sure you want to delete <strong>{{$task->title}}</strong>?</p>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Update Task</button>
+                        <button type="submit" class="btn btn-danger">Delete Task</button>
                     </div>
                 </form>
             </div>

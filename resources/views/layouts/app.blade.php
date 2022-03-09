@@ -59,6 +59,14 @@
             background-color: var(--theme-color);
             border-color: var(--theme-color);
         }
+
+        .task .actions {
+            display: none;
+        }
+
+        .task:hover .actions {
+            display: flex;
+        }
     </style>
 
 </head>
