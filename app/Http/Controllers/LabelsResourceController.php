@@ -45,33 +45,40 @@ class LabelsResourceController extends Controller
     {
 
         // Validate the request
-        $fields = $request->validateWithBag('create', [
-            'title' => 'required',
-            'description' => 'present',
-            'label_id' => 'integer|min:0',
-            'due_date' => 'date|nullable',
+        $fields = $request->validateWithBag('create_label', [
+            'name' => 'required',
+            'color' => 'required',
         ]);
 
         // Assign the user ID to the request
         $fields['user_id'] = Auth::user()->id;
 
         // Create the task
-        Task::create($fields);
+        Label::query()->create($fields);
 
         // Redirect to index with success
-        return redirect()->back()->with('success', 'Task created successfully');
+        return redirect()->back()->with('success', 'Label created successfully');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Task $task
+     * @param Label $label
      */
-    public function show(Task $task): Task
+    public function show(Label $label)
     {
         // Return the task
-        return $task;
+        return view('label-single', [
+            'label' => Label::query()->
+            where('user_id', '=', Auth::user()->id)->
+            where('id', '=', $label->id)->
+            first(),
+            'tasks' => Task::query()->
+            where('user_id', '=', Auth::user()->id)->
+            where('label_id', '=', $label->id)->
+            get()
+        ]);
     }
 
     /**
@@ -80,7 +87,7 @@ class LabelsResourceController extends Controller
     public function edit()
     {
         // Redirect to index (we don't use this)
-        return redirect('/tasks');
+        return redirect('/labels');
     }
 
     /**
