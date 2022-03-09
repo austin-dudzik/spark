@@ -19,7 +19,7 @@ class LabelsResourceController extends Controller
 
         // Return labels view
         return view('labels', [
-            'labels' => Label::query()->
+            'labels' => Label::query()->with(['tasks'])->
             where('user_id', '=', Auth::user()->id)->
             get()
         ]);
