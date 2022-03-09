@@ -20,6 +20,7 @@ class CompletedController extends Controller
                 'tasks' => Task::with(['label'])->
                 where('tasks.user_id', '=', Auth::user()->id)->
                 whereNotNull('tasks.completed')->
+                orderBy('tasks.completed', 'desc')->
                 get()
             ]);
 
