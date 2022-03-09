@@ -24,11 +24,33 @@
                                 data-bs-target="#editModal-"><i class="far fa-pencil" data-bs-placement="top"
                                                                 data-bs-toggle="tooltip" title="test"></i></button>
                         <button class="btn btn-link text-danger p-0 px-2" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal-"><i class="far fa-trash-alt"></i></button>
+                                data-bs-target="#deleteLabelModal-{{$label->id}}"><i class="far fa-trash-alt"></i></button>
                     </div>
                 </div>
             </div>
         </div>
+
+            <!-- Delete label modal -->
+            <div class="modal fade" id="deleteLabelModal-{{$label->id}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-exclamation-triangle me-1 text-danger"></i> Delete Label</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{url('labels', [$label->id])}}">
+                                @csrf
+                                @method('delete')
+                                <p>Are you sure you want to delete <strong>{{$label->name}}</strong>?</p>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">Delete Label</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @empty
             <div class="border-bottom"><p class="fw-600">No labels, yet. Create one below!</p></div>
         @endforelse
