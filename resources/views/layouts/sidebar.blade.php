@@ -4,35 +4,42 @@
             <div class="menu-header">Navigation</div>
             <div class="menu-item">
                 <a href="{{route('index')}}"
-                   class="py-2 menu-link @if(Request::route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fa fa-inbox"></i></span>
                     <span class="menu-text">Inbox</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(Request::route()->getName() == null)bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == null)bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fa fa-calendar-alt"></i></span>
                     <span class="menu-text">Today</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(Request::route()->getName() == null)bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == null)bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-list"></i></span>
                     <span class="menu-text">Schedule</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(Request::route()->getName() == "schedule")bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == "schedule")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-note"></i></span>
                     <span class="menu-text">Notes</span>
                 </a>
             </div>
             <div class="menu-item">
+                <a href="{{route('labels.index')}}"
+                   class="py-2 menu-link @if(request()->route()->getName() == "labels")bg-s_theme text-white fw-bold @endif">
+                    <span class="menu-icon"><i class="fas fa-tag fa-flip-horizontal"></i></span>
+                    <span class="menu-text">Labels</span>
+                </a>
+            </div>
+            <div class="menu-item">
                 <a href="{{route('completed')}}"
-                   class="py-2 menu-link @if(Request::route()->getName() == "completed")bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == "completed")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-check-circle"></i></span>
                     <span class="menu-text">Completed</span>
                 </a>
@@ -40,14 +47,14 @@
 
             <div class="menu-divider"></div>
             <div class="menu-header">
-                Labels <a href="#" data-toggle="modal" data-target="#modalLabel" class="text-muted float-end"><i
+                Labels <a href="#" data-bs-toggle="modal" data-bs-target="#addLabel" class="text-muted float-end"><i
                         class="far fa-plus"></i></a>
             </div>
 
 
             @foreach($labels as $label)
                 <div class="menu-item ">
-                    <a href="?l={{$label->id}}" class="menu-link">
+                    <a href="{{url('labels/' . $label->id)}}" class="menu-link">
                 <span class="menu-icon"><i class="fa fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
                                   </span>
                         <span class="menu-text">{{$label->name}}</span>
