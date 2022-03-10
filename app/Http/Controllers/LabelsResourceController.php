@@ -28,15 +28,6 @@ class LabelsResourceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // Redirect to index (we don't use this)
-        return redirect('/');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -45,7 +36,7 @@ class LabelsResourceController extends Controller
     {
 
         // Validate the request
-        $fields = $request->validateWithBag('create_label', [
+        $fields = $request->validateWithBag('new_label', [
             'name' => 'required',
             'color' => 'required',
         ]);
@@ -53,7 +44,7 @@ class LabelsResourceController extends Controller
         // Assign the user ID to the request
         $fields['user_id'] = Auth::user()->id;
 
-        // Create the task
+        // Create the label
         Label::query()->create($fields);
 
         // Redirect to index with success
@@ -62,13 +53,13 @@ class LabelsResourceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified label.
      *
      * @param Label $label
      */
     public function show(Label $label)
     {
-        // Return the task
+        // Return the single label view
         return view('label-single', [
             'label' => Label::query()->
             where('user_id', '=', Auth::user()->id)->
@@ -83,65 +74,41 @@ class LabelsResourceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        // Redirect to index (we don't use this)
-        return redirect('/labels');
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Task $task
+     * @param Label $label
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Label $label)
     {
 
-        //dd($request->all());
-
-        // Find existing task
-        $currentTask = Task::find($task->id);
-
-        // If task status is changed
-        if ($request->has('sub_status')) {
-            $status = $request->status ? 1 : 0;
-
-            if($status === 1) {
-                $currentTask->update(['completed' =>  Carbon::now()->toDateTimeString()]);
-            } elseif($status === 0) {
-                $currentTask->update(['completed' =>  null]);
-            }
-            //dd($request->status);
-
-
-
-        } else {
-            $fields = $request->validateWithBag('form_' . $task->id, [
-                'title' => 'required',
-                'description' => 'present',
-                'due_date' => 'required'
+            $fields = $request->validateWithBag('edit_label_' . $label->id, [
+                'name' => 'required',
+                'color' => 'required',
             ]);
-            // Update the task
-            $currentTask->update($fields);
-        }
+
+            // Update the label
+            Label::find($label->id)->update($fields);
 
         // Redirect to index with success
-        return redirect()->back()->with('success', 'Task updated successfully');
+        return redirect()->back()->with('success', 'Label updated successfully');
 
     }
 
     /**
-     * Remove the specified task from storage.
+     * Remove the specified label from storage.
      *
      * @param Label $label
      */
     public function destroy(Label $label)
     {
         // Find and delete existing label
-        $toDelete = Label::find($label->id)->delete();
+        Label::find($label->id)->delete();
+
+        // Remove label from tasks
+        Task::query()->where('label_id', '=', $label->id)->update(
+            ['label_id' => null]
+        );
 
         // Redirect to index with success
         return redirect('/labels')->with('success', 'Label deleted successfully');
