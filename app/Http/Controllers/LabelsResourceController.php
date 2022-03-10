@@ -77,6 +77,7 @@ class LabelsResourceController extends Controller
             'tasks' => Task::query()->
             where('user_id', '=', Auth::user()->id)->
             where('label_id', '=', $label->id)->
+            whereNull('completed')->
             get()
         ]);
     }
