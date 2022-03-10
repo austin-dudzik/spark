@@ -33,7 +33,7 @@
 
 </head>
 <body>
-<div id="app">
+<div id="app" @if(Auth::check()) class="authIn" @endif>
 
 @auth
 
