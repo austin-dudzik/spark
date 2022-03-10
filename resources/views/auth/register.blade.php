@@ -5,7 +5,7 @@
             <div class="col"></div>
             <div class="col-7 col-md-9 col-lg-8 col-xl-5">
                 <div class="card">
-                    <div class="card-header text-center py-3 bg-primary text-white">
+                    <div class="card-header text-center py-3 bg-dark text-white">
                         <p class="fw-bold mb-0">
                             <img src="{{url('img/spark.png')}}" class="me-2" alt=""> Spark
                         </p>
@@ -69,9 +69,9 @@
                             </div>
 
                             <button type="submit"
-                                    class="btn btn-primary btn-lg w-100 fw-500 mb-3">{{__('Sign up')}}</button>
+                                    class="btn btn-dark btn-lg w-100 fw-500 mb-3">{{__('Sign up')}}</button>
                             <div class="text-center text-muted">
-                                {{__('Already have an account?')}} <a href="{{route('login')}}">{{__('Log in')}}</a>
+                                {{__('Already have an account?')}} <a class="text-decoration-none text-dark" href="{{route('login')}}">{{__('Log in')}}</a>
                             </div>
                         </form>
                     </div>

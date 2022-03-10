@@ -5,7 +5,7 @@
             <div class="col"></div>
             <div class="col-6 col-md-8 col-lg-7 col-xl-4">
                 <div class="card">
-                    <div class="card-header text-center py-3 bg-primary text-white">
+                    <div class="card-header text-center py-3 bg-dark text-white">
                         <p class="fw-bold mb-0">
                             <img src="{{url('img/spark.png')}}" class="me-2" alt=""> Spark
                         </p>
@@ -53,7 +53,7 @@
                             </div>
 
                             <button type="submit"
-                                    class="btn btn-primary btn-lg w-100 fw-500 mb-3">{{__('Reset Password')}}</button>
+                                    class="btn btn-dark btn-lg w-100 fw-500 mb-3">{{__('Reset Password')}}</button>
                         </form>
                     </div>
                 </div>
