@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+    Route::get('/today', [TodayController::class, 'index'])->name('today');
     Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
