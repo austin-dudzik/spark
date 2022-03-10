@@ -23,6 +23,11 @@ class TodayController extends Controller
             whereDate('due_date', '=', Carbon::today())->
             orderBy(DB::raw('ISNULL(due_date), due_date'), 'ASC')->
             get(),
+            'overdue' => Task::query()->
+            where('due_date', '<', Carbon::today())->
+            whereNull('completed')->
+            where('user_id', '=', Auth::user()->id)->
+            get(),
         ]);
 
 
