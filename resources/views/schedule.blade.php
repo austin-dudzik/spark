@@ -11,11 +11,13 @@
     @include('schedule-list')
     </div>
 
-        <button class="loadMore btn btn-primary w-50">Load more</button>
+        <div class="d-flex justify-content-center">
+        <button class="loadMore btn btn-primary px-5"><i class="far fa-long-arrow-down me-2"></i> Load more</button>
+        </div>
 
     </div>
     <script>
-        $(".addSched").on("click", function() {
+        $(document).on("click", ".addSched", function() {
             $("#due_date").val($(this).data("date"));
         });
     </script>
