@@ -16,7 +16,7 @@
             <div class="border-bottom"><p class="fw-600">No tasks, yet. Create one below!</p></div>
     @endforelse
 
-        <a href="#" id="addTaskFromLabel" data-bs-toggle="modal" data-bs-target="#addTask"
+        <a href="#" data-bs-toggle="modal" data-bs-target="#newTask"
            class="btn btn-link text-s_theme text-decoration-none px-0"><i class="fas fa-plus-circle me-2"></i> New task</a>
 
     <script>

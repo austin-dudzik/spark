@@ -24,10 +24,9 @@
             class="card-header fw-600">{!!$i->format('M j') . ' · ' . $day!!}
             <span class="float-end"><i class="fas fa-star"></i></span>
         </div>
-        <div class="widget-reminder">
             @if(isset($days[$i->format('Y-m-d')]))
                 @foreach ($days[$i->format('Y-m-d')] as $task)
-                    <x-task :task="$task"/>
+                    <x-task :task="$task" :padding="true"></x-task>
                 @endforeach
             @else
                 <div class="card border-0 rounded-0 border-bottom">
@@ -39,10 +38,9 @@
             <div class="p-3">
                 <a href="#"
                    class="addSched btn btn-link text-s_theme text-decoration-none fw-600 btn-sm p-0"
-                   data-bs-toggle="modal" data-bs-target="#addTask"
+                   data-bs-toggle="modal" data-bs-target="#newTask"
                    data-date="@php echo $i->format('Y-m-d\TH:i') @endphp"><i class="fas fa-plus me-1"></i> Add Task</a>
             </div>
         </div>
-    </div>
 
 @endfor

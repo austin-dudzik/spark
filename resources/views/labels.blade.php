@@ -6,59 +6,45 @@
 
     <div class="container w-75 mx-auto">
         <h1 class="fw-bolder h3">
-            {{__('Labels')}}
+            Labels
         </h1>
         <p>Stay organized and prepared with labels, allowing you to categorize your tasks with ease.</p>
-
         @forelse($labels as $label)
-        <div class="card border-0 rounded-0 border-bottom bg-transparent task">
-            <div class="card-body">
-                <div class="d-flex">
-                    <i class="fas fa-tag fa-flip-horizontal fa-2x me-3" style="color:{{$label->color}}"></i>
-                    <div>
-                        <h5 class="mb-1">{{$label->name}}</h5>
-                        <p class="small text-muted mb-2">1 uncompleted task</p>
-                    </div>
-                    <div class="ms-auto actions">
-                        <button class="btn btn-link text-muted p-0 px-2" data-bs-toggle="modal"
-                                data-bs-target="#editModal-"><i class="far fa-pencil" data-bs-placement="top"
-                                                                data-bs-toggle="tooltip" title="test"></i></button>
-                        <button class="btn btn-link text-danger p-0 px-2" data-bs-toggle="modal"
-                                data-bs-target="#deleteLabelModal-{{$label->id}}"><i class="far fa-trash-alt"></i></button>
+            <div class="card border-0 rounded-0 border-bottom bg-transparent task">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <i class="fas fa-tag fa-flip-horizontal fa-2x me-3" style="color:{{$label->color}}"></i>
+                        <div>
+                            <h5 class="mb-1">{{$label->name}}</h5>
+                            <p class="small text-muted mb-2">{{count($label->tasks)}} uncompleted task</p>
+                        </div>
+                        <div class="ms-auto actions">
+                            <button class="btn btn-link text-muted p-0 px-2" data-bs-toggle="modal"
+                                    data-bs-target="#editLabelModal-{{$label->id}}">
+                            <span data-bs-placement="top" data-bs-toggle="tooltip" title="Edit label">
+                            <i class="far fa-pencil"></i>
+                                </span>
+                            </button>
+                            <button class="btn btn-link text-danger p-0 px-2" data-bs-toggle="modal"
+                                    data-bs-target="#deleteLabelModal-{{$label->id}}">
+                                <span data-bs-placement="top" data-bs-toggle="tooltip" title="Delete label">
+                                <i class="far fa-trash-alt"></i>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-            <!-- Delete label modal -->
-            <div class="modal fade" id="deleteLabelModal-{{$label->id}}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-exclamation-triangle me-1 text-danger"></i> Delete Label</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="{{url('labels', [$label->id])}}">
-                                @csrf
-                                @method('delete')
-                                <p>Are you sure you want to delete <strong>{{$label->name}}</strong>?</p>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">Delete Label</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         @empty
             <div class="border-bottom"><p class="fw-600">No labels, yet. Create one below!</p></div>
         @endforelse
 
-        <a href="#" data-bs-toggle="modal" data-bs-target="#addLabel"
-           class="btn btn-link text-s_theme text-decoration-none px-0"><i class="fas fa-plus-circle me-2"></i> Add label</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#newLabel"
+           class="btn btn-link text-s_theme text-decoration-none px-0">
+            <i class="fas fa-plus-circle me-2"></i> Add label
+        </a>
 
-
-
+    @include('modals.deleteLabel')
 
 @endsection

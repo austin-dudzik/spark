@@ -1,4 +1,4 @@
-@section('title', 'Inbox')
+@section('title', 'Today')
 
 @extends('layouts.app')
 
@@ -6,7 +6,7 @@
 
     <div class="container w-75 mx-auto">
         <h1 class="fw-bolder h3">
-            <i class="fas fa-inbox me-2"></i> Inbox
+            <i class="fas fa-calendar-alt me-2"></i> Today
         </h1>
         <p>What will you accomplish today?</p>
 
