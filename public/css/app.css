@@ -1,24 +1,29 @@
 @charset "UTF-8";
-#app .auth .card-header {
+.auth .card-header {
   font-size: 30px;
 }
-#app .auth .card-header img {
+.auth .card-header img {
   height: 35px;
   filter: brightness(0) invert(1);
 }
-#app .app-header .brand-logo img {
+.auth .form-check-input:checked {
+  background-color: var(--bs-dark);
+  border-color: var(--bs-dark);
+}
+
+#app.authIn .app-header .brand-logo img {
   filter: brightness(0) invert(1);
 }
-#app .app-header .menu .menu-search .menu-search-input input {
+#app.authIn .app-header .menu .menu-search .menu-search-input input {
   background: #ffffff35;
 }
-#app .app-header .menu .menu-search .menu-search-input input::-moz-placeholder {
+#app.authIn .app-header .menu .menu-search .menu-search-input input::-moz-placeholder {
   color: #ffffff;
 }
-#app .app-header .menu .menu-search .menu-search-input input:-ms-input-placeholder {
+#app.authIn .app-header .menu .menu-search .menu-search-input input:-ms-input-placeholder {
   color: #ffffff;
 }
-#app .app-header .menu .menu-search .menu-search-input input::placeholder {
+#app.authIn .app-header .menu .menu-search .menu-search-input input::placeholder {
   color: #ffffff;
 }
 @-webkit-keyframes growProgressBar {
@@ -38,13 +43,13 @@
   }
 }
 @property --pgPercentage {
-  #app {
+  #app.authIn {
     syntax: "<number>";
     inherits: false;
     initial-value: 0;
   }
 }
-#app div[role=progressbar] {
+#app.authIn div[role=progressbar] {
   --size: 5rem;
   --fg: #4c4d4f;
   --bg: #e1e1e1;
@@ -60,37 +65,37 @@
   font-size: calc(var(--size) / 5);
   color: var(--fg);
 }
-#app div[role=progressbar]::before {
+#app.authIn div[role=progressbar]::before {
   counter-reset: percentage var(--value);
   content: counter(percentage) "%";
 }
-#app .bg-s_theme {
+#app.authIn .bg-s_theme {
   background-color: var(--theme-color);
 }
-#app .text-s_theme {
+#app.authIn .text-s_theme {
   color: var(--theme-color);
 }
-#app #schedule-list > .card:first-child .card-header {
+#app.authIn #schedule-list > .card:first-child .card-header {
   background-color: var(--theme-color);
   color: #fff;
 }
-#app #schedule-list > .card .fa-star {
+#app.authIn #schedule-list > .card .fa-star {
   display: none;
 }
-#app #schedule-list > .card:first-child .fa-star {
+#app.authIn #schedule-list > .card:first-child .fa-star {
   display: inline-block;
 }
-#app .form-check-input:checked {
+#app.authIn .form-check-input:checked {
   background-color: var(--theme-color);
   border-color: var(--theme-color);
 }
-#app .task .actions {
+#app.authIn .task .actions {
   display: none;
 }
-#app .task:hover .actions {
+#app.authIn .task:hover .actions {
   display: flex;
 }
-#app .swatch {
+#app.authIn .swatch {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -99,11 +104,20 @@
   color: #fff;
   cursor: pointer;
 }
-#app .app-sidebar {
+#app.authIn .app-sidebar {
   overflow: hidden;
 }
-#app .app-sidebar:hover {
+#app.authIn .app-sidebar .menu-link.bg-s_theme > .text-muted {
+  color: #fff;
+}
+#app.authIn .app-sidebar:hover {
   overflow-y: auto;
+}
+#app.authIn .task .label {
+  text-decoration: none;
+}
+#app.authIn .task .label:hover {
+  text-decoration: underline;
 }
 
 /*!
