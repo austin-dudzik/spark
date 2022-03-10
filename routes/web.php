@@ -48,6 +48,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
     // PUT Routes
-    Route::put('/settings/update', SettingsController::class . '@update');
+    Route::put('/settings/updateGoals', SettingsController::class . '@updateGoals');
+    Route::put('/settings/updateTheme', SettingsController::class . '@updateTheme');
+    Route::put('/settings/updateAccount', SettingsController::class . '@updateAccount');
+    Route::put('/settings/updatePassword', SettingsController::class . '@updatePassword');
+
+    // DELETE Routes
+    Route::delete('/settings/deleteAccount', SettingsController::class . '@deleteAccount');
+
 
 });
