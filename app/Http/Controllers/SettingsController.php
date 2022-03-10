@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
+use App\Models\Note;
+use App\Models\Task;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Contracts\Support\Renderable;
@@ -69,11 +72,19 @@ class SettingsController extends Controller
 
         elseif ($request->type === "delete") {
 
-            // Delete the account
-            User::find(Auth::user()->id)->delete();
+            // Delete account data
+            Task::query()->where('user_id', Auth::user()->id)->delete();
+            Note::query()->where('user_id', Auth::user()->id)->delete();
+            Label::query()->where('user_id', Auth::user()->id)->delete();
 
-            // Redirect with success
-            return redirect('settings')->with('success', 'Success, your account has been deleted.');
+            // Delete the account
+            User::query()->find(Auth::user()->id)->delete();
+
+            // Log the user out
+            Auth::logout();
+
+            // Redirect to log in
+            redirect('/login');
         }
 
     }
