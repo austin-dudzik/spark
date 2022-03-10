@@ -9,16 +9,21 @@
                                   </span>
                             <span class="menu-text">Inbox</span>
                         </div>
-                        @if($inboxTasks->count() > 0)
-                            <div class="text-muted">{{count($inboxTasks)}}</div>
+                        @if($inboxTasks > 0)
+                            <div class="@if(request()->route()->getName() == "index") text-white @else text-muted @endif">{{$inboxTasks}}</div>
                         @endif
                     </a>
             </div>
             <div class="menu-item">
-                <a href="{{route('today')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == "today")bg-s_theme text-white fw-bold @endif">
-                    <span class="menu-icon"><i class="fa fa-calendar-alt"></i></span>
-                    <span class="menu-text">Today</span>
+                <a href="{{route('today')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "today")bg-s_theme text-white fw-bold @endif">
+                    <div>
+                <span class="menu-icon d-inline-block"><i class="fa fa-calendar-alt"></i>
+                                  </span>
+                        <span class="menu-text">Today</span>
+                    </div>
+                    @if($todayTasks > 0)
+                        <div class="@if(request()->route()->getName() == "today") text-white @else text-muted @endif">{{$todayTasks}}</div>
+                    @endif
                 </a>
             </div>
             <div class="menu-item">
@@ -31,14 +36,14 @@
             <div class="menu-item">
                 <a href="{{route('notes.index')}}"
                    class="py-2 menu-link @if(request()->route()->getName() == "notes.index")bg-s_theme text-white fw-bold @endif">
-                    <span class="menu-icon"><i class="fas fa-note"></i></span>
+                    <span class="menu-icon"><i class="fas fa-notes"></i></span>
                     <span class="menu-text">Notes</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('labels.index')}}"
                    class="py-2 menu-link @if(request()->route()->getName() == "labels.index")bg-s_theme text-white fw-bold @endif">
-                    <span class="menu-icon"><i class="fas fa-tag fa-flip-horizontal"></i></span>
+                    <span class="menu-icon"><i class="fas fa-tags fa-flip-horizontal"></i></span>
                     <span class="menu-text">Labels</span>
                 </a>
             </div>
@@ -79,21 +84,24 @@
 
             <div class="card mt-auto mx-3 p-2">
                 <div class="card-body">
-                    @php $ratio = (count($tasksToday) / auth()->user()->daily_goal) * 100 @endphp
+                    @php
+                        $ratio = (count($tasksToday) / auth()->user()->daily_goal) * 100;
+                        $tasksLeft = auth()->user()->daily_goal - count($tasksToday);
+                    @endphp
                     @if($ratio >= 100)
                         <p class="h1 mb-3">🎉</p>
                         <h5>You did it!</h5>
                         <p>You successfully reached your task goal for today. Good job!</p>
                     @elseif($ratio === 0)
                         <div role="progressbar" style="--value:{{$ratio}}" class="mb-3"></div>
-                        <h5>Ready. Set. Go!</h5>
-                        <p>You didn't reach your task goal for today. Keep trying!</p>
+                        <h5>Ready. Set. Go! 🚀</h5>
+                        <p>It's time to reach your goals! Complete <strong>{{$tasksLeft}}</strong> tasks for today.</p>
                     @else
                         <div role="progressbar" style="--value:{{$ratio}}" class="mb-3"></div>
-                        <h5>Almost there!</h5>
-                        <p>Complete <strong>{{$ratio}}</strong> more task today to reach your goal.</p>
+                        <h5>Keep going!</h5>
+                        <p>Complete <strong>{{$tasksLeft}}</strong> more @if($tasksLeft === 1) task @else tasks @endif today to reach your goal.</p>
                     @endif
-                    <a href="#" class="btn bg-s_theme text-white w-100"><i
+                    <a href="{{route('settings')}}" class="btn bg-s_theme text-white w-100"><i
                             class="fal fa-pencil me-2"></i> Edit goal</a>
                 </div>
             </div>
