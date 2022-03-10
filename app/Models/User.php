@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'theme'
+        'theme',
+        'daily_goal',
+        'weekly_goal',
     ];
 
     /**
