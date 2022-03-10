@@ -32,8 +32,6 @@ class Task extends Model
             $query->where('label_id', 'LIKE', "%{$filters['l']}%");
         }
 
-        $query->where('status', '=', isset($filters['completed']));
-
         return $query;
 
     }
