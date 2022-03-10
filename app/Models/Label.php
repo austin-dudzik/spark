@@ -9,7 +9,7 @@ class Label extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class, 'label_id', 'id');
+        return $this->hasMany(Task::class, 'label_id', 'id')->whereNull('completed');
     }
 
     protected $fillable = [
