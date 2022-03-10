@@ -15,29 +15,29 @@
                     </a>
             </div>
             <div class="menu-item">
-                <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == null)bg-s_theme text-white fw-bold @endif">
+                <a href="{{route('today')}}"
+                   class="py-2 menu-link @if(request()->route()->getName() == "today")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fa fa-calendar-alt"></i></span>
                     <span class="menu-text">Today</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == null)bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == "schedule")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-list"></i></span>
                     <span class="menu-text">Schedule</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="{{route('schedule')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == "schedule")bg-s_theme text-white fw-bold @endif">
+                <a href="{{route('notes.index')}}"
+                   class="py-2 menu-link @if(request()->route()->getName() == "notes.index")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-note"></i></span>
                     <span class="menu-text">Notes</span>
                 </a>
             </div>
             <div class="menu-item">
                 <a href="{{route('labels.index')}}"
-                   class="py-2 menu-link @if(request()->route()->getName() == "labels")bg-s_theme text-white fw-bold @endif">
+                   class="py-2 menu-link @if(request()->route()->getName() == "labels.index")bg-s_theme text-white fw-bold @endif">
                     <span class="menu-icon"><i class="fas fa-tag fa-flip-horizontal"></i></span>
                     <span class="menu-text">Labels</span>
                 </a>
@@ -52,8 +52,11 @@
 
             <div class="menu-divider"></div>
             <div class="menu-header">
-                Labels <a href="#" data-bs-toggle="modal" data-bs-target="#addLabel" class="text-muted float-end"><i
-                        class="far fa-plus"></i></a>
+                Labels <a href="#" data-bs-toggle="modal" data-bs-target="#newLabel" class="text-muted float-end">
+                    <span data-bs-toggle="tooltip" data-bs-position="top" title="New Label">
+                        <i class="far fa-plus"></i>
+                    </span>
+                </a>
             </div>
 
 
