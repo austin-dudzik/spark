@@ -6,8 +6,9 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class SparkResourceController extends Controller
+class TaskResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,20 +26,11 @@ class SparkResourceController extends Controller
                 with(['label'])->
                 where('tasks.user_id', '=', Auth::user()->id)->
                 whereNull('tasks.completed')->
-                orderBy('due_date', 'asc')->
+                orderBy(DB::raw('ISNULL(due_date), due_date'), 'ASC')->
                 get(),
             ]);
 
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // Redirect to index (we don't use this)
-        return redirect('/tasks');
     }
 
     /**
@@ -50,10 +42,10 @@ class SparkResourceController extends Controller
     {
 
         // Validate the request
-        $fields = $request->validateWithBag('create', [
+        $fields = $request->validateWithBag('new_task', [
             'title' => 'required',
             'description' => 'present',
-            'label_id' => 'integer|min:0',
+            'label_id' => 'integer|min:0|nullable',
             'due_date' => 'date|nullable',
         ]);
 
@@ -69,26 +61,6 @@ class SparkResourceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Task $task
-     */
-    public function show(Task $task): Task
-    {
-        // Return the task
-        return $task;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        // Redirect to index (we don't use this)
-        return redirect('/tasks');
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
@@ -96,8 +68,6 @@ class SparkResourceController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-
-        //dd($request->all());
 
         // Find existing task
         $currentTask = Task::find($task->id);
@@ -111,12 +81,10 @@ class SparkResourceController extends Controller
             } elseif($status === 0) {
                 $currentTask->update(['completed' =>  null]);
             }
-            //dd($request->status);
-
 
 
         } else {
-            $fields = $request->validateWithBag('form_' . $task->id, [
+            $fields = $request->validateWithBag('edit_task_' . $task->id, [
                 'title' => 'required',
                 'description' => 'present',
                 'due_date' => 'required'
