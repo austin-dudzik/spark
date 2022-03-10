@@ -21,9 +21,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTask"><i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task</a>
-                <div class="dropdown-divider my-1"></div>
                 <a class="dropdown-item" href=""><i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label</a>
-                <div class="dropdown-divider my-1"></div>
                 <a class="dropdown-item" href=""><i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note</a>
             </div>
 
@@ -38,7 +36,10 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right dropdown-notification">
-                <h6 class="dropdown-header text-gray-900 mb-1">Friday Mar 4</h6>
+                <div class="dropdown-header">
+                <h6 class="text-gray-900 mb-1">Productivity &centerdot; {{\Carbon\Carbon::today()->format('M j')}}</h6>
+                <p>{{$totalCompleted}} completed tasks</p>
+                </div>
 
                 @foreach($tasksToday as $task1)
                     <h5>{{ $task1->title }}</h5>
