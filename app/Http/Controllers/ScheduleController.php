@@ -16,7 +16,12 @@ class ScheduleController extends Controller
         if($page == 1){
             return view('schedule', [
                 'days' => Task::schedule($page),
-                'page' => $page
+                'page' => $page,
+                'overdue' => Task::query()->
+                where('due_date', '<', Carbon::today())->
+                whereNull('completed')->
+                where('user_id', '=', Auth::user()->id)->
+                get(),
             ]);
         }else{
             return view('schedule-list', [
