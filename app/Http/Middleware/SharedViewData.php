@@ -23,7 +23,10 @@ class SharedViewData
         if (auth()->check()) {
             view()->share('inboxTasks', Task::query()->where('tasks.user_id', '=', Auth::user()->id)->
             whereNull('tasks.completed')->get());
-            view()->share('labels', Label::query()->with(['tasks'])->where('user_id', '=', Auth::user()->id)->get());
+            view()->share('labels', Label::query()->
+            with(['tasks'])->
+            where('user_id', '=', Auth::user()->id)->
+            get());
             view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::user()->id)->get());
         }
 
