@@ -17,7 +17,7 @@ class ProfileController extends Controller
     public function index(): Renderable
     {
 
-        $completedTasks = Task::where('user_id', Auth::id())->where('status', 1)->count();
+        $completedTasks = Task::where('user_id', Auth::id())->whereNotNull('completed')->count();
 
         return view('profile', [
             'completedTasks' => $completedTasks
