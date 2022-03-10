@@ -1,13 +1,11 @@
 @php
-
     $start = new DateTime();
     $start->modify('+' . (($page-1) * 14) . ' days');
     $end = new DateTime();
     $end->modify('+' . ($page * 14) . ' days');
-
 @endphp
 
-@for($i = $start ; $i <= $end; $i->modify('+1 day'))
+@for($i = $start ; $i->format('Y-m-d') < $end->format('Y-m-d'); $i->modify('+1 day'))
 
     @php
         if($i->format('Y-m-d') === date('Y-m-d')){
