@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\CompletedController;
-use App\Http\Controllers\LabelsResourceController;
-use App\Http\Controllers\NotesController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SparkResourceController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\SparkResourceController;
+use App\Http\Controllers\NotesResourceController;
+use App\Http\Controllers\LabelsResourceController;
+
+use App\Http\Controllers\CompletedController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,23 +29,20 @@ Auth::routes();
 // Group all routes and protect them
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/', [SparkResourceController::class, 'index'])->name('index');
-
+    // Resource Routes
+    Route::resource('/labels', LabelsResourceController::class);
+    Route::resource('/notes', NotesResourceController::class);
     Route::resource('/tasks', SparkResourceController::class);
 
-    Route::resource('/search', SearchController::class);
-
+    // GET Routes
+    Route::get('/', [SparkResourceController::class, 'index'])->name('index');
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
-
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
-
-    Route::get('/notes', [NotesController::class, 'index'])->name('notes');
-
-    Route::resource('/labels', LabelsResourceController::class);
-
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
+    // PUT Routes
     Route::put('/settings/update', SettingsController::class . '@update');
 
 });
