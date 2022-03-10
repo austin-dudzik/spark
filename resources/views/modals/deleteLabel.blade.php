@@ -13,7 +13,7 @@
                     @csrf
                     @method('delete')
                     <p>Are you sure you want to delete <strong>{{$label->name}}</strong>?</p>
-                    <p><strong>WARNING:</strong> Deleting this label will also delete all tasks within it.</p>
+                    <p><strong>NOTE:</strong> Any remaining tasks with this label will become uncategorized.</p>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Delete Label</button>
                     </div>
