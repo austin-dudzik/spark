@@ -57,6 +57,7 @@
             </div>
 
 
+            <div class="mb-4">
             @foreach($labels as $label)
                 <div class="menu-item ">
                     <a href="{{url('labels/' . $label->id)}}" class="menu-link justify-content-between">
@@ -71,6 +72,7 @@
                     </a>
                 </div>
             @endforeach
+            </div>
 
             <div class="card mt-auto mx-3 p-2">
                 <div class="card-body">
