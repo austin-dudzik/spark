@@ -4,7 +4,7 @@ use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\SparkResourceController;
+use App\Http\Controllers\TaskResourceController;
 use App\Http\Controllers\NotesResourceController;
 use App\Http\Controllers\LabelsResourceController;
 
@@ -31,12 +31,15 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
 
     // Resource Routes
-    Route::resource('/labels', LabelsResourceController::class);
-    Route::resource('/notes', NotesResourceController::class);
-    Route::resource('/tasks', SparkResourceController::class);
+    Route::resource('/labels', LabelsResourceController::class,
+        ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
+    Route::resource('/notes', NotesResourceController::class,
+        ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::resource('/tasks', TaskResourceController::class,
+        ['only' => ['index', 'store', 'update', 'destroy']]);
 
     // GET Routes
-    Route::get('/', [SparkResourceController::class, 'index'])->name('index');
+    Route::get('/', [TaskResourceController::class, 'index'])->name('index');
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
