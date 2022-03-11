@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        // Run the seeders
+        (new UserSeeder())->run();
         (new LabelSeeder())->run();
         (new TaskSeeder())->run();
-        (new UserSeeder())->run();
-        // \App\Models\User::factory(10)->create();
+        (new NoteSeeder())->run();
     }
 }
