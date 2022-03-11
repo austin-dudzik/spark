@@ -57,7 +57,7 @@
 
             <div class="menu-divider"></div>
             <div class="menu-header">
-                Labels <a href="#" data-bs-toggle="modal" data-bs-target="#newLabel" class="text-muted float-end">
+                Labels <a href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal" class="text-muted float-end">
                     <span data-bs-toggle="tooltip" data-bs-position="top" title="New Label">
                         <i class="far fa-plus"></i>
                     </span>
@@ -82,11 +82,12 @@
             @endforeach
             </div>
 
+            @if(auth()->user()->daily_goal > 0)
             <div class="card mt-auto mx-3 p-2">
                 <div class="card-body">
                     @php
-                        $ratio = (count($tasksToday) / auth()->user()->daily_goal) * 100;
-                        $tasksLeft = auth()->user()->daily_goal - count($tasksToday);
+                        $ratio = ($tasksToday / auth()->user()->daily_goal) * 100;
+                        $tasksLeft = auth()->user()->daily_goal - $tasksToday;
                     @endphp
                     @if($ratio >= 100)
                         <p class="h1 mb-3">🎉</p>
@@ -95,7 +96,7 @@
                     @elseif($ratio === 0)
                         <div role="progressbar" style="--value:{{$ratio}}" class="mb-3"></div>
                         <h5>Ready. Set. Go! 🚀</h5>
-                        <p>It's time to reach your goals! Complete <strong>{{$tasksLeft}}</strong> tasks for today.</p>
+                        <p>It's time to reach your goals! Complete <strong>{{$tasksLeft}}</strong> @if($tasksLeft === 1) task @else tasks @endif  for today.</p>
                     @else
                         <div role="progressbar" style="--value:{{$ratio}}" class="mb-3"></div>
                         <h5>Keep going!</h5>
@@ -105,6 +106,7 @@
                             class="fal fa-pencil me-2"></i> Edit goal</a>
                 </div>
             </div>
+                @endif
 
         </div>
     </div>
