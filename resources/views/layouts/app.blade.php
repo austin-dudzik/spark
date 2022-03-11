@@ -27,14 +27,14 @@
     @auth
         <style>
             :root {
-                --theme-color: {{\Illuminate\Support\Facades\Auth::user()->theme}};
+                --theme-color: {{auth()->user()->theme}};
             }
         </style>
     @endauth
 
 </head>
 <body>
-<div id="app" @if(Auth::check()) class="authIn" @endif>
+<div id="app" @if(auth()->check()) class="authIn" @endif>
 
 @auth
 
@@ -49,7 +49,7 @@
 
     @endauth
 
-    <main id="content" class="{{Auth::check() ? 'app-content pt-5 mt-5 bg-white' : ''}}">
+    <main id="content" class="{{auth()->check() ? 'app-content pt-5 mt-5 bg-white' : ''}}">
         @yield('content')
     </main>
 
