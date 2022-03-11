@@ -32,10 +32,10 @@
                         <div class="swatch me-2" data-color="#505050"></div>
                     </div>
 
-                    <input type="hidden" name="color" id="color" value="{{$note->id}}">
+                    <input type="hidden" name="color" id="color" value="{{$note->color}}">
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn bg-s_theme text-white">Save Label</button>
+                        <button type="submit" class="btn bg-s_theme text-white">Save Note</button>
                     </div>
                 </form>
             </div>
