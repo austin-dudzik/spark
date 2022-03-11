@@ -137,10 +137,6 @@
         border-bottom: 2px solid hsl(0, 0%, 87%);
     }
 
-    tbody > tr:last-child > td {
-        border-bottom: 0;
-    }
-
     .note .hideUntilHover {
         visibility: hidden;
     }
@@ -151,7 +147,6 @@
 
     .app-header .menu .menu-search .menu-search-input .form-control:focus {
         border-color: #fff;
-
     }
 
     .dropdown-item.active, .dropdown-item:active {
@@ -175,6 +170,13 @@
         color: #fff;
         background-color: var(--theme-color);
         border-color: var(--theme-color);
+    }
+
+    label.btn.btn-outline-primary:not(.btn-check:checked + .btn-outline-primary) {
+        &:hover, &:active, &:focus {
+            background: #00000010;
+            color: var(--theme-color);
+        }
     }
 
 }

@@ -121,9 +121,6 @@
   vertical-align: bottom;
   border-bottom: 2px solid #dedede;
 }
-#app.authIn tbody > tr:last-child > td {
-  border-bottom: 0;
-}
 #app.authIn .note .hideUntilHover {
   visibility: hidden;
 }
@@ -150,6 +147,10 @@
   color: #fff;
   background-color: var(--theme-color);
   border-color: var(--theme-color);
+}
+#app.authIn label.btn.btn-outline-primary:not(.btn-check:checked + .btn-outline-primary):hover, #app.authIn label.btn.btn-outline-primary:not(.btn-check:checked + .btn-outline-primary):active, #app.authIn label.btn.btn-outline-primary:not(.btn-check:checked + .btn-outline-primary):focus {
+  background: #00000010;
+  color: var(--theme-color);
 }
 
 /*!
