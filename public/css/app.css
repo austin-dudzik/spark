@@ -54,8 +54,6 @@
   --fg: #4c4d4f;
   --bg: #e1e1e1;
   --pgPercentage: var(--value);
-  -webkit-animation: growProgressBar 3s 1 forwards;
-          animation: growProgressBar 3s 1 forwards;
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
@@ -118,6 +116,40 @@
 }
 #app.authIn .task .label:hover {
   text-decoration: underline;
+}
+#app.authIn .table thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dedede;
+}
+#app.authIn tbody > tr:last-child > td {
+  border-bottom: 0;
+}
+#app.authIn .note .hideUntilHover {
+  visibility: hidden;
+}
+#app.authIn .note:hover .hideUntilHover {
+  visibility: visible;
+}
+#app.authIn .app-header .menu .menu-search .menu-search-input .form-control:focus {
+  border-color: #fff;
+}
+#app.authIn .dropdown-item.active, #app.authIn .dropdown-item:active {
+  background: var(--theme-color);
+}
+#app.authIn .btn, #app.authIn input, #app.authIn textarea, #app.authIn select {
+  box-shadow: none !important;
+}
+#app.authIn .form-control:focus {
+  border-color: var(--theme-color);
+}
+#app.authIn .btn-outline-primary {
+  color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+#app.authIn .btn-check:active + .btn-outline-primary, #app.authIn .btn-check:checked + .btn-outline-primary, #app.authIn .btn-outline-primary.active, #app.authIn .btn-outline-primary.dropdown-toggle.show, #app.authIn .btn-outline-primary:active {
+  color: #fff;
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
 }
 
 /*!

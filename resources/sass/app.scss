@@ -51,7 +51,6 @@
         --fg: #4c4d4f;
         --bg: #e1e1e1;
         --pgPercentage: var(--value);
-        animation: growProgressBar 3s 1 forwards;
         width: var(--size);
         height: var(--size);
         border-radius: 50%;
@@ -131,6 +130,51 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+
+    .table thead > tr > th {
+        vertical-align: bottom;
+        border-bottom: 2px solid hsl(0, 0%, 87%);
+    }
+
+    tbody > tr:last-child > td {
+        border-bottom: 0;
+    }
+
+    .note .hideUntilHover {
+        visibility: hidden;
+    }
+
+    .note:hover .hideUntilHover {
+        visibility: visible;
+    }
+
+    .app-header .menu .menu-search .menu-search-input .form-control:focus {
+        border-color: #fff;
+
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        background: var(--theme-color);
+    }
+
+    .btn, input, textarea, select {
+        box-shadow: none !important
+    }
+
+    .form-control:focus {
+        border-color: var(--theme-color);
+    }
+
+    .btn-outline-primary {
+        color: var(--theme-color);
+        border-color: var(--theme-color);
+    }
+
+    .btn-check:active + .btn-outline-primary, .btn-check:checked + .btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+        color: #fff;
+        background-color: var(--theme-color);
+        border-color: var(--theme-color);
     }
 
 }
