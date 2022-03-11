@@ -20,9 +20,9 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
-                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTask"><i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task</a>
-                <a class="dropdown-item" href=""><i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label</a>
-                <a class="dropdown-item" href=""><i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note</a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"><i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task</a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal"><i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label</a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note</a>
             </div>
 
         </div>
@@ -31,24 +31,68 @@
 
             <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
                 <div class="text-white fw-600">
-                    <i class="far fa-circle-three-quarters nav-icon text-white me-2"></i> {{count($tasksToday)}}/{{auth()->user()->daily_goal}}
+                    <i class="far @if($tasksToday >= auth()->user()->daily_goal) fa-check-circle @else fa-list-check @endif nav-icon text-white me-2"></i> {{$tasksToday}}/{{auth()->user()->daily_goal}}
                 </div>
             </a>
-
             <div class="dropdown-menu dropdown-menu-right dropdown-notification">
                 <div class="dropdown-header">
-                <h6 class="text-gray-900 mb-1">Productivity &centerdot; {{\Carbon\Carbon::today()->format('M j')}}</h6>
-                <p>{{$totalCompleted}} completed tasks</p>
+                <h6 class="text-gray-900 mb-1">Productivity</h6>
+                    <div class="d-flex justify-content-between">
+                        <p>{{$totalCompleted}} completed tasks</p>
+                        <a href="{{route('completed')}}" class="text-dark text-decoration-none">View all completed tasks</a>
+                    </div>
+                </div>
+                <div class="px-3">
+                    @if(auth()->user()->daily_goal !== 0 || auth()->user()->weekly_goal != 0)
+                        @if(auth()->user()->daily_goal > 0)
+                        <div class="card mt-auto p-2 mb-2">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    @php
+                                        $dayRatio = ($tasksToday / auth()->user()->daily_goal) * 100;
+                                        $dayTasksLeft = auth()->user()->daily_goal - $tasksToday;
+                                    @endphp
+                                    <div class="d-flex justify-content-center">
+                                        <div role="progressbar" class="fw-600" style="font-size:12px;height:50px;width:50px;--value: @if($dayRatio >= 100) 100 @else {{$dayRatio}} @endif"></div>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6>Daily goal</h6>
+                                        <p class="small mb-0">{{$tasksToday}}/{{auth()->user()->daily_goal}} tasks completed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                            @if(auth()->user()->weekly_goal > 0)
+                            <div class="card mt-auto p-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        @php
+                                            $weekRatio = ($tasksWeek / auth()->user()->weekly_goal) * 100;
+                                            $weekTasksLeft = auth()->user()->weekly_goal - $tasksWeek;
+                                        @endphp
+                                        <div class="d-flex justify-content-center">
+                                            <div role="progressbar" class="fw-600" style="font-size:12px;height:50px;width:50px;--value: @if($weekRatio >= 100) 100 @else {{$weekRatio}} @endif"></div>
+                                        </div>
+                                        <div class="ms-3">
+                                            <h6>Weekly goal</h6>
+                                            <p class="small mb-0">{{$tasksWeek}}/{{auth()->user()->weekly_goal}} tasks completed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                    @else
+                        <p class="small text-muted text-center">You don't have task goals set up yet.</p>
+                    @endif
+<div class="d-flex justify-content-center">
+                    <a href="{{route('settings')}}" class="btn btn-primary btn-block mt-3 mb-2"><i class="far fa-pencil me-2"></i> Edit goals</a>
                 </div>
 
-                @foreach($tasksToday as $task1)
-                    <h5>{{ $task1->title }}</h5>
-                @endforeach
-
-                <div class="text-center pt-3">
-                    <i class="fas fa-sun fa-3x text-yellow"></i>
-                    <p class='text-muted text-center mt-4'>No tasks completed, yet.</p>
                 </div>
+
             </div>
         </div>
 

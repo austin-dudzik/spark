@@ -9,6 +9,12 @@
             <h1 class="fw-700">Settings</h1>
             <hr class="my-4">
 
+            @if (session('success'))
+                <div class="alert bg-success-400 text-white" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+
 
             <div class="row mb-4">
                 <div class="col me-4">
@@ -192,12 +198,6 @@
                     </form>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert bg-success-400 text-white" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             <div class="row">
                 <div class="col me-3">
