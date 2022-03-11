@@ -1,4 +1,4 @@
-@section('title', 'Inbox')
+@section('title', 'Notes')
 
 @extends('layouts.app')
 
@@ -37,8 +37,6 @@
 
             @endforeach
         </div>
-
-        @include('modals.newNote')
 
         <a href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal"
            class="btn btn-link text-s_theme text-decoration-none px-0 py-3"><i class="fas fa-plus me-2"></i> Add
