@@ -290,10 +290,6 @@
         </div>
     </div>
     <script>
-        $("form").on("submit", function () {
-            $(this).find("button[type='submit']").addClass("disabled").html('<i class="fa fa-spinner-third mx-4 fa-spin"></i>');
-        });
-
         // Add checkmark to active theme
         $("[data-theme='{{ auth()->user()->theme }}']").find("i.fa-check").removeClass("d-none");
         // On theme change
