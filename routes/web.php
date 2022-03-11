@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/settings/updateTheme', SettingsController::class . '@updateTheme');
     Route::put('/settings/updateAccount', SettingsController::class . '@updateAccount');
     Route::put('/settings/updatePassword', SettingsController::class . '@updatePassword');
+    Route::put('/updateView', ViewController::class . '@update');
 
     // DELETE Routes
     Route::delete('/settings/deleteAccount', SettingsController::class . '@deleteAccount');
