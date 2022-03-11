@@ -37,7 +37,9 @@ class SharedViewData
             where('user_id', '=', Auth::user()->id)->
             get());
 
-            view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::user()->id)->get());
+            view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::user()->id)->count());
+
+            view()->share('tasksWeek', Task::query()->whereBetween('completed', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('user_id', '=', Auth::user()->id)->count());
 
         }
 
