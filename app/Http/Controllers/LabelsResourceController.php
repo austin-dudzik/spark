@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use App\Models\Task;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ViewSorter;
 
 class LabelsResourceController extends Controller
 {
+
+    use ViewSorter;
+
     /**
      * Display a listing of the resource.
      *
@@ -69,6 +72,7 @@ class LabelsResourceController extends Controller
             where('user_id', '=', Auth::user()->id)->
             where('label_id', '=', $label->id)->
             whereNull('completed')->
+            orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
             get()
         ]);
     }

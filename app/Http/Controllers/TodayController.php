@@ -6,9 +6,12 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Traits\ViewSorter;
 
 class TodayController extends Controller
 {
+
+    use ViewSorter;
 
     public function index()
     {
@@ -21,7 +24,7 @@ class TodayController extends Controller
             where('tasks.user_id', '=', Auth::user()->id)->
             whereNull('tasks.completed')->
             whereDate('due_date', '=', Carbon::today())->
-            orderBy(DB::raw('ISNULL(due_date), due_date'), 'ASC')->
+            orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
             get(),
             'overdue' => Task::query()->
             where('due_date', '<', Carbon::today())->

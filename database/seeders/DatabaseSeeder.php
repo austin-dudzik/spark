@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // Run the seeders
         (new UserSeeder())->run();
+        (new ViewSeeder())->run();
         (new LabelSeeder())->run();
         (new TaskSeeder())->run();
         (new NoteSeeder())->run();

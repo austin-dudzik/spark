@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="w-75 mx-auto">
-        <h3 class="mb-3">Schedule</h3>
+        <h3 class="mb-3"><i class="far fa-list me-1"></i> Schedule</h3>
 
         @if(count($overdue))
         <div class="py-3">

@@ -4,14 +4,27 @@
 
 @section('content')
 
-    <div class="w-75 mx-auto">
-        <h1 class="h3 fw-bolder">
-            Search for "{{ $filters['q'] }}"
-        </h1>
-        <p>We found {{count($tasks)}} tasks that match your search...</p>
+    <div class="container @if($view->task_view === 'table') w-100 @else w-75 mx-auto @endif">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="fw-bolder h3">
+                    Search for "{{ $filters['q'] }}"
+                </h1>
+                <p>We found {{count($tasks)}} tasks that match your search...</p>
+            </div>
+            <div>
+                <x-view-selector></x-view-selector>
+            </div>
+        </div>
 
-        @foreach ($tasks as $task)
-            <x-task :task="$task"></x-task>
-    @endforeach
+        @if($view->task_view == 'list')
+            <x-list :tasks="$tasks"></x-list>
+        @elseif($view->task_view == 'grid')
+            <x-grid :tasks="$tasks"></x-grid>
+        @elseif($view->task_view == 'table')
+            <x-table :tasks="$tasks"></x-table>
+        @endif
+
+    </div>
 
 @endsection

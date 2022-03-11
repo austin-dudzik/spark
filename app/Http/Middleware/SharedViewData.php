@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Label;
 use App\Models\Task;
+use App\Models\View;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
@@ -36,6 +37,10 @@ class SharedViewData
             with(['tasks'])->
             where('user_id', '=', Auth::user()->id)->
             get());
+
+            view()->share('view', View::query()->
+            where('user_id', '=', Auth::user()->id)->
+            first());
 
             view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::user()->id)->count());
 

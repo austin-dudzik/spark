@@ -3,38 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Traits\ViewSorter;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class TaskResourceController extends Controller
 {
+
+    use ViewSorter;
+
     /**
-     * Display a listing of the resource.
+     * Display the Inbox view
      *
      */
     public function index()
     {
 
-        $filters = request()->only(['q', 'l', 'completed']);
-
-            // Return home view
-            return view('home', [
-                // Grab all tasks for the current user
-                'tasks' => Task::filter($filters)->
-                with(['label'])->
-                where('tasks.user_id', '=', Auth::user()->id)->
-                whereNull('tasks.completed')->
-                orderBy(DB::raw('ISNULL(due_date), due_date'), 'ASC')->
-                get(),
-            ]);
-
+        // Return sorted view
+        return view('home', [
+            // Grab all tasks for the current user
+            'tasks' => Task::query()->
+            with(['label'])->
+            where('tasks.user_id', '=', Auth::user()->id)->
+            whereNull('tasks.completed')->
+            orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
+            get(),
+        ]);
 
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new task in the database
      *
      * @param Request $request
      */
@@ -55,13 +55,12 @@ class TaskResourceController extends Controller
         // Create the task
         Task::create($fields);
 
-        // Redirect to index with success
-        return redirect()->back()->with('success', 'Task created successfully');
-
+        // Redirect back
+        return redirect()->back();
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a task in the database
      *
      * @param Request $request
      * @param Task $task
@@ -75,14 +74,7 @@ class TaskResourceController extends Controller
         // If task status is changed
         if ($request->has('sub_status')) {
             $status = $request->status ? 1 : 0;
-
-            if($status === 1) {
-                $currentTask->update(['completed' =>  Carbon::now()->toDateTimeString()]);
-            } elseif($status === 0) {
-                $currentTask->update(['completed' =>  null]);
-            }
-
-
+            $currentTask->update(['completed' => ($status === 1 ? Carbon::now()->toDateTimeString() : null)]);
         } else {
             $fields = $request->validateWithBag('edit_task_' . $task->id, [
                 'title' => 'required',
@@ -93,25 +85,22 @@ class TaskResourceController extends Controller
             $currentTask->update($fields);
         }
 
-        // Redirect to index with success
-        return redirect()->back()->with('success', 'Task updated successfully');
+        // Redirect back
+        return redirect()->back();
 
     }
 
     /**
-     * Remove the specified task from storage.
+     * Delete a task from the database
      *
      * @param Task $task
      */
     public function destroy(Task $task)
     {
-        // Find existing task
-        $toDelete = Task::find($task->id);
+        // Find and delete the task
+        Task::find($task->id)->delete();
 
-        // Delete the task
-        $toDelete->delete();
-
-        // Redirect to index with success
-        return redirect('/tasks')->with('success', 'Task deleted successfully');
+        // Redirect back
+        return redirect('/tasks');
     }
 }
