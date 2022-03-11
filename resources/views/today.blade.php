@@ -26,7 +26,7 @@
             <div class="border-bottom"><p class="fw-600">Hooray! Looks like you're all caught up for today.</p></div>
         @endforelse
 
-        <a href="#" data-bs-toggle="modal" data-bs-target="#newTask"
+        <a href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"
            class="btn btn-link text-s_theme text-decoration-none px-0 py-3 addToday"><i class="fas fa-plus me-2"></i> Add task</a>
 
         <script>

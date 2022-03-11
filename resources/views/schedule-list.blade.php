@@ -36,7 +36,7 @@
             <div class="p-3">
                 <a href="#"
                    class="addSched btn btn-link text-s_theme text-decoration-none fw-600 btn-sm p-0"
-                   data-bs-toggle="modal" data-bs-target="#newTask"
+                   data-bs-toggle="modal" data-bs-target="#newTaskModal"
                    data-date="@php echo $i->format('Y-m-d\TH:i') @endphp"><i class="fas fa-plus me-1"></i> Add Task</a>
             </div>
         </div>

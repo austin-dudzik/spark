@@ -16,7 +16,7 @@
             <div class="border-bottom"><p class="fw-600">You're all caught up! Time to relax.</p></div>
         @endforelse
 
-        <a href="#" data-bs-toggle="modal" data-bs-target="#newTask"
+        <a href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"
            class="btn btn-link text-s_theme text-decoration-none px-0 py-3"><i class="fas fa-plus-circle me-2"></i> Add task</a>
 
 @endsection

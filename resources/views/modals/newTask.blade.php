@@ -1,5 +1,5 @@
 <!-- New task modal -->
-<div class="modal fade" id="newTask">
+<div class="modal fade" id="newTaskModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -53,4 +53,4 @@
         </div>
     </div>
 </div>
-<script>@if($errors->new_task->any()) $(document).ready(()=>{$("#newTask").modal("show")}) @endif</script>
+<script>@if($errors->new_task->any()) $(document).ready(()=>{$("#newTaskModal").modal("show")}) @endif</script>
