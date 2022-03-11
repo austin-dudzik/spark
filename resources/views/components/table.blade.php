@@ -14,7 +14,7 @@
     </thead>
     <tbody>
     @foreach($tasks as $task)
-    <tr class="@if($loop->last) border-bottom-0 @endif">
+    <tr @if($loop->last) style="border-bottom-style:hidden" @endif>
         <td class="border-end">
             <form method="post" action="{{url('tasks', [$task->id])}}">
                 @csrf
