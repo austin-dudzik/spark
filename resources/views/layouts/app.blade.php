@@ -43,8 +43,9 @@
     @include('layouts.sidebar')
 
     <!-- Modals -->
-        @include('modals.newTask')
-        @include('modals.newLabel')
+    @include('modals.newTask')
+    @include('modals.newLabel')
+    @include('modals.newNote')
 
     @endauth
 
