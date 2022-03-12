@@ -16,26 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class Task extends Model
 {
 
-    public function label()
-    {
-        return $this->hasOne(Label::class, 'id', 'label_id');
-    }
-
-    public function scopeFilter($query, array $filters = [])
-    {
-
-        if (isset($filters['q'])) {
-            $query->where('title', 'LIKE', "%{$filters['q']}%");
-        }
-
-        if (isset($filters['l'])) {
-            $query->where('label_id', 'LIKE', "%{$filters['l']}%");
-        }
-
-        return $query;
-
-    }
-
+    // Fillable
     protected $fillable = [
         'title',
         'description',
@@ -46,33 +27,41 @@ class Task extends Model
         'due_date'
     ];
 
+    // Dates
     protected $dates = [
         'due_date',
         'completed'
     ];
 
+    // Casts
     protected $casts = [
         'status' => 'integer'
     ];
 
-    public static function schedule($page = 1){
+    public static function schedule($page = 1)
+    {
         $start = new DateTime();
-        $start->modify('+' . (($page-1) * 14) . ' days');
+        $start->modify('+' . (($page - 1) * 14) . ' days');
         $end = new DateTime();
         $end->modify('+' . ($page * 14) . ' days');
 
         return static::query()
-            ->where('user_id', '=', Auth::user()->id)
+            ->with(['label'])
+            ->where('user_id', '=', Auth::id())
             ->whereBetween('due_date', [$start->format('Y-m-d'), $end->format('Y-m-d')])
             ->whereNull('completed')
             ->orderBy('due_date', 'desc')
-            ->with(['label'])
             ->get()
             ->groupBy(function ($task) {
                 return Carbon::parse($task->due_date)->format('Y-m-d');
             }
-        );
+            );
 
+    }
+
+    public function label()
+    {
+        return $this->hasOne(Label::class, 'id', 'label_id');
     }
 
 }

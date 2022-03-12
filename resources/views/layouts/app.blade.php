@@ -10,7 +10,8 @@
     <title>@hasSection('title') @yield('title') {{'|'}} @endif{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
     <!-- Fonts -->
     <link href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" rel="stylesheet">
@@ -36,7 +37,7 @@
 <body>
 <div id="app" @if(auth()->check()) class="authIn" @endif>
 
-@auth
+    @auth
 
     <!-- Navigation -->
     @include('layouts.header')

@@ -3,14 +3,14 @@
         <div class="menu">
             <div class="menu-header">Navigation</div>
             <div class="menu-item">
-                    <a href="{{route('index')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "index")bg-s_theme text-white fw-bold @endif">
+                    <a href="{{route('inbox')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "inbox")bg-s_theme text-white fw-bold @endif">
                         <div>
                 <span class="menu-icon d-inline-block"><i class="fa fa-inbox"></i>
                                   </span>
                             <span class="menu-text">Inbox</span>
                         </div>
                         @if($inboxTasks > 0)
-                            <div class="@if(request()->route()->getName() == "index") text-white @else text-muted @endif">{{$inboxTasks}}</div>
+                            <div class="@if(request()->route()->getName() == "inbox") text-white @else text-muted @endif">{{$inboxTasks}}</div>
                         @endif
                     </a>
             </div>
@@ -64,7 +64,6 @@
                 </a>
             </div>
 
-
             <div class="mb-4">
             @foreach($labels as $label)
                 <div class="menu-item ">
@@ -86,7 +85,7 @@
             <div class="card mt-auto mx-3 p-2">
                 <div class="card-body">
                     @php
-                        $ratio = ($tasksToday / auth()->user()->daily_goal) * 100;
+                        $ratio = ceil(($tasksToday / auth()->user()->daily_goal) * 100);
                         $tasksLeft = auth()->user()->daily_goal - $tasksToday;
                     @endphp
                     @if($ratio >= 100)

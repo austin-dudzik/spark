@@ -51,7 +51,6 @@
             </div>
         </div>
     </div>
-
     @include('modals.editTask')
     @include('modals.deleteTask')
 @endforeach

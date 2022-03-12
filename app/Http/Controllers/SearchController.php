@@ -3,30 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
 
     public function index()
     {
+        // Get search term from URL
+        $filters = request()->only(['q']);
 
-        $filters = request()->only(['q', 'l', 'completed']);
-
-        // Return home view
+        // Return search view
         return view('search', [
-            // Grab all tasks for the current user
             'tasks' => Task::filter($filters)->
             with(['label'])->
-            where('tasks.user_id', '=', Auth::user()->id)->
+            where('tasks.user_id', '=', auth()->id())->
             where('tasks.title', 'like', "%{$filters['q']}%")->
             orderBy('due_date', 'asc')->
             get(),
-            'filters' => $filters
+            'filters' => $filters,
         ]);
-
-
     }
 
 }

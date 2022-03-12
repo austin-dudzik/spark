@@ -2,38 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Note;
+use Illuminate\Http\Request;
 
 class NotesResourceController extends Controller
 {
     /**
-     * Display a listing of notes.
+     * Display a list of notes
      *
      */
     public function index()
     {
-
         // Return notes view
         return view('notes', [
             'notes' => Note::query()->
-            where('user_id', '=', Auth::user()->id)->
+            where('user_id', '=', Auth::id())->
             get()
         ]);
-
-
     }
 
     /**
-     * Store a newly created note in storage.
+     * Store a new note in the database
      *
      * @param Request $request
      */
     public function store(Request $request)
     {
-
         // Validate the request
         $fields = $request->validateWithBag('new_note', [
             'color' => 'required',
@@ -41,48 +36,46 @@ class NotesResourceController extends Controller
         ]);
 
         // Assign the user ID to the request
-        $fields['user_id'] = Auth::user()->id;
+        $fields['user_id'] = Auth::id();
 
-        // Create the task
+        // Create the note
         Note::query()->create($fields);
 
-        // Redirect to index with success
-        return redirect()->back()->with('success', 'Note created successfully');
-
+        // Redirect back
+        return redirect()->back();
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified note in the database
      *
      * @param Request $request
      * @param Note $note
      */
     public function update(Request $request, Note $note)
     {
+        // Validate the request
+        $fields = $request->validateWithBag('edit_note_' . $note->id, [
+            'color' => 'required',
+            'content' => 'required'
+        ]);
+        // Update the note
+        Note::query()->find($note->id)->update($fields);
 
-            $fields = $request->validateWithBag('edit_note_' . $note->id, [
-                'color' => 'required',
-                'content' => 'required'
-            ]);
-            // Update the note
-            Note::find($note->id)->update($fields);
-
-        // Redirect to index with success
-        return redirect()->back()->with('success', 'Note updated successfully');
-
+        // Redirect back
+        return redirect()->back();
     }
 
     /**
-     * Remove the specified note from storage.
+     * Remove the specified note from the database
      *
      * @param Note $note
      */
     public function destroy(Note $note)
     {
         // Find and delete existing label
-        Note::find($note->id)->delete();
+        Note::query()->find($note->id)->delete();
 
-        // Redirect to index with success
-        return redirect('/notes')->with('success', 'Note deleted successfully');
+        // Redirect back
+        return redirect()->back();
     }
 }

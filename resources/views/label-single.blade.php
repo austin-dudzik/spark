@@ -18,25 +18,25 @@
             </div>
         </div>
 
-        @if($view->task_view == 'list')
-            <x-list :tasks="$tasks"></x-list>
-        @elseif($view->task_view == 'grid')
-            <x-grid :tasks="$tasks"></x-grid>
-        @elseif($view->task_view == 'table')
-            <x-table :tasks="$tasks"></x-table>
-        @endif
-
-        @if($tasks->count() === 0)
+        @if(count($tasks))
+            @if($view->task_view == 'list')
+                <x-list :tasks="$tasks"></x-list>
+            @elseif($view->task_view == 'grid')
+                <x-grid :tasks="$tasks"></x-grid>
+            @elseif($view->task_view == 'table')
+                <x-table :tasks="$tasks"></x-table>
+            @endif
+        @else
             <div class="border-bottom"><p class="fw-600">No tasks, yet. Create one below!</p></div>
         @endif
 
         <a href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"
            class="btn btn-link text-s_theme text-decoration-none px-0"><i class="fas fa-plus-circle me-2"></i> New task</a>
 
-    <script>
-        $(document).ready(function () {
-            $("#label_id option[value='{{$label->id}}']").prop('selected', true);
-        });
-    </script>
+        <script>
+            $(document).ready(function () {
+                $("#label_id option[value='{{$label->id}}']").prop('selected', true);
+            });
+        </script>
 
 @endsection

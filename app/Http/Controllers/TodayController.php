@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Traits\ViewSorter;
 
 class TodayController extends Controller
@@ -15,25 +14,22 @@ class TodayController extends Controller
 
     public function index()
     {
-
         // Return today view
         return view('today', [
-            // Grab all tasks for the current user
             'tasks' => Task::query()->
             with(['label'])->
-            where('tasks.user_id', '=', Auth::user()->id)->
-            whereNull('tasks.completed')->
+            where('user_id', '=', Auth::id())->
+            whereNull('completed')->
             whereDate('due_date', '=', Carbon::today())->
             orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
             get(),
             'overdue' => Task::query()->
             where('due_date', '<', Carbon::today())->
             whereNull('completed')->
-            where('user_id', '=', Auth::user()->id)->
+            where('user_id', '=', Auth::id())->
+            orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
             get(),
         ]);
-
-
     }
 
 }

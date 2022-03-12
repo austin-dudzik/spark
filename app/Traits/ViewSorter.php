@@ -13,7 +13,7 @@ trait ViewSorter
 
         // Get the user view
         $view = View::query()->
-        where('user_id', '=', Auth::user()->id)->
+        where('user_id', '=', Auth::id())->
         first();
 
         // Determine column sort

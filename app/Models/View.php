@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Note Model
+ * View Model
  *
  * @property  string $title
  *
  */
 class View extends Model
 {
-
+    // Fillable
     protected $fillable = [
         'user_id',
         'sort_by',

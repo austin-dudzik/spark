@@ -18,7 +18,7 @@ class NoteSeeder extends Seeder
 
         $task = new Note([
             'user_id' => 1,
-            'content' => 'Welcome to Spark Notes!',
+            'content' => 'Welcome to Spark Notes! Use this space to jot down notes and other messages that you\'d rather keep separate from your regular task list.',
             'color' => '#a477d1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

@@ -23,31 +23,30 @@ class SharedViewData
     {
         if (auth()->check()) {
 
-            view()->share('inboxTasks', Task::query()->where('tasks.user_id', '=', Auth::user()->id)->
-            whereNull('tasks.completed')->count());
+            view()->share('inboxTasks', Task::query()->where('user_id', '=', Auth::id())->
+            whereNull('completed')->count());
 
-            view()->share('todayTasks', Task::query()->where('tasks.user_id', '=', Auth::user()->id)->
-            whereDate('tasks.due_date', Carbon::today())->
-            whereNull('tasks.completed')->count());
+            view()->share('todayTasks', Task::query()->where('user_id', '=', Auth::id())->
+            whereDate('due_date', Carbon::today())->
+            whereNull('completed')->count());
 
-            view()->share('totalCompleted', Task::query()->where('tasks.user_id', '=', Auth::user()->id)->
-            whereNotNull('tasks.completed')->count());
+            view()->share('totalCompleted', Task::query()->where('user_id', '=', Auth::id())->
+            whereNotNull('completed')->count());
 
             view()->share('labels', Label::query()->
             with(['tasks'])->
-            where('user_id', '=', Auth::user()->id)->
+            where('user_id', '=', Auth::id())->
             get());
 
             view()->share('view', View::query()->
-            where('user_id', '=', Auth::user()->id)->
+            where('user_id', '=', Auth::id())->
             first());
 
-            view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::user()->id)->count());
+            view()->share('tasksToday', Task::query()->whereDate('completed', Carbon::today())->where('user_id', '=', Auth::id())->count());
 
-            view()->share('tasksWeek', Task::query()->whereBetween('completed', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('user_id', '=', Auth::user()->id)->count());
+            view()->share('tasksWeek', Task::query()->whereBetween('completed', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('user_id', '=', Auth::id())->count());
 
         }
-
 
         return $next($request);
     }

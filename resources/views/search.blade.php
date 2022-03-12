@@ -17,12 +17,14 @@
             </div>
         </div>
 
-        @if($view->task_view == 'list')
-            <x-list :tasks="$tasks"></x-list>
-        @elseif($view->task_view == 'grid')
-            <x-grid :tasks="$tasks"></x-grid>
-        @elseif($view->task_view == 'table')
-            <x-table :tasks="$tasks"></x-table>
+        @if(count($tasks))
+            @if($view->task_view == 'list')
+                <x-list :tasks="$tasks"></x-list>
+            @elseif($view->task_view == 'grid')
+                <x-grid :tasks="$tasks"></x-grid>
+            @elseif($view->task_view == 'table')
+                <x-table :tasks="$tasks"></x-table>
+            @endif
         @endif
 
     </div>

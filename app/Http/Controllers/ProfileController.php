@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Support\Renderable;
 use App\Models\Label;
 use App\Models\Note;
 use App\Models\Task;
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     /**
-     * Show the profile page.
+     * Show the profile page
      *
      * @return Renderable
      */

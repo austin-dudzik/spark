@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        @if(count($overdue))
+        @if($overdue > 0)
             <div class="py-3">
                 <h5><i class="fas fa-exclamation-circle text-danger me-1"></i> Overdue</h5>
                 @if($view->task_view == 'list')
@@ -31,27 +31,28 @@
             <h5>Today &centerdot; {{date('M j')}}</h5>
         @endif
 
-        @if($view->task_view == 'list')
-            <x-list :tasks="$tasks"></x-list>
-        @elseif($view->task_view == 'grid')
-            <x-grid :tasks="$tasks"></x-grid>
-        @elseif($view->task_view == 'table')
-            <x-table :tasks="$tasks"></x-table>
-        @endif
-
-        @if($tasks->count() === 0)
+        @if(count($tasks))
+            @if($view->task_view == 'list')
+                <x-list :tasks="$tasks"></x-list>
+            @elseif($view->task_view == 'grid')
+                <x-grid :tasks="$tasks"></x-grid>
+            @elseif($view->task_view == 'table')
+                <x-table :tasks="$tasks"></x-table>
+            @endif
+        @else
             <div class="border-bottom"><p class="fw-600">Hooray! Looks like you're all caught up for today.</p></div>
         @endif
 
         <a href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"
-           class="btn btn-link text-s_theme text-decoration-none px-0 py-3 addToday"><i class="fas fa-plus-circle me-2"></i> Add
+           class="btn btn-link text-s_theme text-decoration-none px-0 py-3 addToday"><i
+                class="fas fa-plus-circle me-2"></i> Add
             task</a>
     </div>
 
-        <script>
-            $(document).on("click", ".addToday", function() {
-                $("#due_date").val('{{\Carbon\Carbon::now()->format('Y-m-d\TH:i')}}');
-            });
-        </script>
+    <script>
+        $(document).on("click", ".addToday", function () {
+            $("#due_date").val('{{\Carbon\Carbon::now()->format('Y-m-d\TH:i')}}');
+        });
+    </script>
 
 @endsection

@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Label extends Model
 {
 
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'label_id', 'id')->whereNull('completed');
-    }
-
+    // Fillable
     protected $fillable = [
         'name',
         'color',
         'user_id'
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'label_id', 'id')->whereNull('completed');
+    }
 
 }

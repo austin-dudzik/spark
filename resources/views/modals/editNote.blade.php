@@ -19,9 +19,7 @@
                         @enderror
                     </div>
 
-
                     <label class="mb-2">Note Color</label>
-
                     <div class="d-flex mb-2">
                         <div class="swatch me-2" data-color="#5eae54"></div>
                         <div class="swatch me-2" data-color="#da7db5"></div>

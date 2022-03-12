@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('theme')->default('#ff822d');
             $table->integer('daily_goal')->default(5);
-            $table->integer('weekly_goal')->default(5);
+            $table->integer('weekly_goal')->default(20);
             $table->timestamps();
         });
     }

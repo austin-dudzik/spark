@@ -19,18 +19,16 @@ class TaskResourceController extends Controller
      */
     public function index()
     {
-
-        // Return sorted view
+        // Return home view
         return view('home', [
             // Grab all tasks for the current user
             'tasks' => Task::query()->
             with(['label'])->
-            where('tasks.user_id', '=', Auth::user()->id)->
+            where('tasks.user_id', '=', Auth::id())->
             whereNull('tasks.completed')->
             orderBy($this->getSorters()->sort_by, $this->getSorters()->order_by)->
             get(),
         ]);
-
     }
 
     /**
@@ -40,7 +38,6 @@ class TaskResourceController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validate the request
         $fields = $request->validateWithBag('new_task', [
             'title' => 'required',
@@ -50,10 +47,10 @@ class TaskResourceController extends Controller
         ]);
 
         // Assign the user ID to the request
-        $fields['user_id'] = Auth::user()->id;
+        $fields['user_id'] = Auth::id();
 
         // Create the task
-        Task::create($fields);
+        Task::query()->create($fields);
 
         // Redirect back
         return redirect()->back();
@@ -67,14 +64,13 @@ class TaskResourceController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-
         // Find existing task
-        $currentTask = Task::find($task->id);
+        $currentTask = Task::query()->find($task->id);
 
         // If task status is changed
         if ($request->has('sub_status')) {
             $status = $request->status ? 1 : 0;
-            $currentTask->update(['completed' => ($status === 1 ? Carbon::now()->toDateTimeString() : null)]);
+            $currentTask->query()->update(['completed' => ($status === 1 ? Carbon::now()->toDateTimeString() : null)]);
         } else {
             $fields = $request->validateWithBag('edit_task_' . $task->id, [
                 'title' => 'required',
@@ -82,12 +78,11 @@ class TaskResourceController extends Controller
                 'due_date' => 'required'
             ]);
             // Update the task
-            $currentTask->update($fields);
+            $currentTask->query()->update($fields);
         }
 
         // Redirect back
         return redirect()->back();
-
     }
 
     /**
@@ -98,9 +93,9 @@ class TaskResourceController extends Controller
     public function destroy(Task $task)
     {
         // Find and delete the task
-        Task::find($task->id)->delete();
+        Task::query()->find($task->id)->delete();
 
         // Redirect back
-        return redirect('/tasks');
+        return redirect()->back();
     }
 }

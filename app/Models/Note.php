@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Note Model
  *
- * @property  string $title
- *
  */
 class Note extends Model
 {
 
+    // Fillable
     protected $fillable = [
         'user_id',
         'color',
         'content'
     ];
+
 }

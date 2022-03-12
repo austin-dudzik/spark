@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
         ['only' => ['index', 'store', 'update', 'destroy']]);
 
     // GET Routes
-    Route::get('/', [TaskResourceController::class, 'index'])->name('index');
+    Route::get('/', [TaskResourceController::class, 'index'])->name('inbox');
     Route::get('/completed', [CompletedController::class, 'index'])->name('completed');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');

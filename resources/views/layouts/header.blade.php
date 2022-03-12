@@ -1,6 +1,6 @@
 <div class="app-header bg-s_theme">
     <div class="brand">
-        <a href="{{ url('/') }}" class="brand-logo ms-4 text-white">
+        <a href="{{ route('inbox') }}" class="brand-logo ms-4 text-white">
             <img src="{{url('img/spark.png')}}" class="me-3" alt=""> {{ config('app.name', 'Laravel') }}
         </a>
     </div>
@@ -20,9 +20,15 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
-                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal"><i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task</a>
-                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal"><i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label</a>
-                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note</a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+                    <i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task
+                </a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal">
+                    <i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label
+                </a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal">
+                    <i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note
+                </a>
             </div>
 
         </div>
@@ -49,7 +55,7 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     @php
-                                        $dayRatio = ($tasksToday / auth()->user()->daily_goal) * 100;
+                                        $dayRatio = ceil(($tasksToday / auth()->user()->daily_goal) * 100);
                                         $dayTasksLeft = auth()->user()->daily_goal - $tasksToday;
                                     @endphp
                                     <div class="d-flex justify-content-center">
@@ -69,7 +75,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         @php
-                                            $weekRatio = ($tasksWeek / auth()->user()->weekly_goal) * 100;
+                                            $weekRatio = ceil(($tasksWeek / auth()->user()->weekly_goal) * 100);
                                             $weekTasksLeft = auth()->user()->weekly_goal - $tasksWeek;
                                         @endphp
                                         <div class="d-flex justify-content-center">
@@ -105,7 +111,7 @@
         <div class="menu-item dropdown">
             <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
                 <div class="menu-img">
-                    <img src="https://gravatar.com/avatar/{{md5(Auth::user()->email)}}>" alt=""
+                    <img src="https://gravatar.com/avatar/{{md5(auth()->user()->email)}}>" alt=""
                          class="mw-100 mh-100 rounded-circle border border-3">
                 </div>
             </a>
@@ -115,10 +121,10 @@
                 <a class="dropdown-item d-flex align-items-center" href="{{route('settings')}}">Settings <i
                         class="fa fa-cog fa-fw ms-auto text-dark text-opacity-50"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log out <i
-                        class="fa fa-key fa-fw ms-auto text-dark text-opacity-50"></i></a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                <a class="dropdown-item d-flex align-items-center" onclick="e.preventDefault();$('#logout-form').submit()">Log out
+                    <i class="fa fa-key fa-fw ms-auto text-dark text-opacity-50"></i>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                     @csrf
                 </form>
             </div>
