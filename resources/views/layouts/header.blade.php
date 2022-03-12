@@ -29,7 +29,7 @@
 
         <div class="menu-item dropdown">
 
-            <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+            <a href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" class="menu-link">
                 <div class="text-white fw-600">
                     <i class="far @if($tasksToday >= auth()->user()->daily_goal) fa-check-circle @else fa-list-check @endif nav-icon text-white me-2"></i> {{$tasksToday}}/{{auth()->user()->daily_goal}}
                 </div>
@@ -88,7 +88,7 @@
                         <p class="small text-muted text-center">You don't have task goals set up yet.</p>
                     @endif
 <div class="d-flex justify-content-center">
-                    <a href="{{route('settings')}}" class="btn btn-primary btn-block mt-3 mb-2"><i class="far fa-pencil me-2"></i> Edit goals</a>
+                    <a href="{{route('settings')}}" class="btn bg-s_theme text-white mt-3 mb-2"><i class="far fa-pencil me-2"></i> Edit goals</a>
                 </div>
 
                 </div>
