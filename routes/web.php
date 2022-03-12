@@ -58,5 +58,4 @@ Route::group(['middleware' => ['auth']], function () {
     // DELETE Routes
     Route::delete('/settings/deleteAccount', SettingsController::class . '@deleteAccount');
 
-
 });
