@@ -70,15 +70,16 @@ class TaskResourceController extends Controller
         // If task status is changed
         if ($request->has('sub_status')) {
             $status = $request->status ? 1 : 0;
-            $currentTask->query()->update(['completed' => ($status === 1 ? Carbon::now()->toDateTimeString() : null)]);
+            $currentTask->update(['completed' => ($status === 1 ? Carbon::now()->toDateTimeString() : null)]);
         } else {
             $fields = $request->validateWithBag('edit_task_' . $task->id, [
                 'title' => 'required',
                 'description' => 'present',
+                'label_id' => 'integer|min:0|nullable',
                 'due_date' => 'required'
             ]);
             // Update the task
-            $currentTask->query()->update($fields);
+            $currentTask->update($fields);
         }
 
         // Redirect back
