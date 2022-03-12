@@ -1,10 +1,12 @@
+@section('title', 'Set new password')
+
 @extends('layouts.app')
 
 @section('content')
-        <div class="auth row vh-100 d-flex align-items-center">
+        <div class="auth row d-flex align-items-center">
             <div class="col"></div>
-            <div class="col-6 col-md-8 col-lg-7 col-xl-4">
-                <div class="card">
+            <div class="col-10 col-md-8 col-lg-7 col-xl-4">
+                <div class="card mb-lg-0 mb-5">
                     <div class="card-header text-center py-3 bg-dark text-white">
                         <p class="fw-bold mb-0">
                             <img src="{{url('img/spark.png')}}" class="me-2" alt=""> Spark

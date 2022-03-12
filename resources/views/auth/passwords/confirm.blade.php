@@ -1,3 +1,5 @@
+@section('title', 'Confirm password')
+
 @extends('layouts.app')
 
 @section('content')
