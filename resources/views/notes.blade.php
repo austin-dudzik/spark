@@ -12,11 +12,11 @@
 
         <div class="row grid">
             @foreach ($notes as $note)
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-3 note">
                     <div class="card" style="background:{{$note->color}}20;border-top:7px solid {{$note->color}}">
                         <div class="card-body">
                             <p>{{$note->content}}</p>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end hideUntilHover">
                                 <a href="#" class="text-dark text-decoration-none me-3" data-bs-toggle="modal" data-bs-target="#editNoteModal-{{$note->id}}">
                                     <span data-bs-toggle="tooltip" data-bs-position="top" title="Edit Note">
                                         <i class="far fa-pencil me-1"></i>
@@ -39,7 +39,7 @@
         </div>
 
         <a href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal"
-           class="btn btn-link text-s_theme text-decoration-none px-0 py-3"><i class="fas fa-plus me-2"></i> Add
+           class="btn btn-link text-s_theme text-decoration-none px-0 py-3"><i class="fas fa-plus-circle me-2"></i> Add
             note</a>
 
     <script>
