@@ -47,7 +47,7 @@
         <td data-bs-toggle="tooltip" data-bs-position="top" title="{{$task->updated_at->format('F j, Y g:i A')}}" class="border-end">{{$task->updated_at->format('M j g:i A')}}</td>
 
         <td class="border-end" data-bs-toggle="tooltip" data-bs-position="top" title="{{$task->created_at->format('F j, Y g:i A')}}">{{$task->created_at->format('M j g:i A')}}</td>
-        <td>
+        <td class="text-end pe-3">
             <button class="btn btn-link text-muted p-0 px-1" data-bs-toggle="modal"
                     data-bs-target="#editTaskModal-{{$task->id}}">
                     <span data-bs-placement="top" data-bs-toggle="tooltip" title="Edit Task">
