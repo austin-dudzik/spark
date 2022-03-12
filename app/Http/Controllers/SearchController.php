@@ -14,7 +14,7 @@ class SearchController extends Controller
 
         // Return search view
         return view('search', [
-            'tasks' => Task::filter($filters)->
+            'tasks' => Task::query()->
             with(['label'])->
             where('tasks.user_id', '=', auth()->id())->
             where('tasks.title', 'like', "%{$filters['q']}%")->
