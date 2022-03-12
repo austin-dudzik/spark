@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        @if($overdue > 0)
+        @if(count($overdue))
             <div class="py-3">
                 <h5><i class="fas fa-exclamation-circle text-danger me-1"></i> Overdue</h5>
                 @if($view->task_view == 'list')
