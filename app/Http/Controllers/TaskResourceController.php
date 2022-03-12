@@ -20,7 +20,7 @@ class TaskResourceController extends Controller
     public function index()
     {
         // Return home view
-        return view('home', [
+        return view('inbox', [
             // Grab all tasks for the current user
             'tasks' => Task::query()->
             with(['label'])->
