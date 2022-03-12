@@ -121,7 +121,7 @@
                 <a class="dropdown-item d-flex align-items-center" href="{{route('settings')}}">Settings <i
                         class="fa fa-cog fa-fw ms-auto text-dark text-opacity-50"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" onclick="e.preventDefault();$('#logout-form').submit()">Log out
+                <a href="{{route('logout')}}" class="dropdown-item d-flex align-items-center" onclick="event.preventDefault();$('#logout-form').submit()">Log out
                     <i class="fa fa-key fa-fw ms-auto text-dark text-opacity-50"></i>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
