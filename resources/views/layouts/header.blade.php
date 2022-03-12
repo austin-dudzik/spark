@@ -1,4 +1,9 @@
 <div class="app-header bg-s_theme">
+    <div class="mobile-toggler ms-3">
+        <a href="#" data-toggle="sidebar-mobile">
+            <i class="fas fa-bars text-white"></i>
+        </a>
+    </div>
     <div class="brand">
         <a href="{{ route('inbox') }}" class="brand-logo ms-4 text-white">
             <img src="{{url('img/spark.png')}}" class="me-3" alt=""> {{ config('app.name', 'Laravel') }}
@@ -100,12 +105,6 @@
                 </div>
 
             </div>
-        </div>
-
-        <div class="menu-item">
-                <div class="text-white fw-600">
-                    <i class="fas fa-question-circle nav-icon text-white me-2"></i>
-                </div>
         </div>
 
         <div class="menu-item dropdown">

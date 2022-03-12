@@ -111,4 +111,5 @@
 
         </div>
     </div>
+    <button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
 </div>

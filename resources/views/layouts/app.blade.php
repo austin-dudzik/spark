@@ -50,7 +50,7 @@
 
     @endauth
 
-    <main id="content" class="{{auth()->check() ? 'app-content pt-5 mt-5 bg-white' : ''}}">
+    <main id="content" class="app {{auth()->check() ? 'app-content pt-5 mt-5 bg-white' : ''}}">
         @yield('content')
     </main>
 
