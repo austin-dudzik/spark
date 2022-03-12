@@ -4,6 +4,6 @@ $(document).ready(function () {
 
     // Add loader to buttons
     $("form").on("submit", function () {
-        $(this).find("button[type='submit']").addClass("disabled").html('<i class="fa fa-spinner-third mx-4 fa-spin"></i>');
+        $(this).find("button[type='submit']").addClass("disabled").html('<i class="fas fa-spinner-third mx-4 fa-spin"></i>');
     });
 });

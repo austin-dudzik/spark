@@ -85,7 +85,7 @@
                                 <span>
                             <i class="fas fa-circle text-primary me-2"></i> Spark
                                 </span>
-                                        <i class="fa fa-check my-auto d-none"></i>
+                                        <i class="fas fa-check my-auto d-none"></i>
                                     </div>
                                 </div>
                             </div>

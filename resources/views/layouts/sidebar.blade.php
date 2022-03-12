@@ -5,7 +5,7 @@
             <div class="menu-item">
                     <a href="{{route('inbox')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "inbox")bg-s_theme text-white fw-bold @endif">
                         <div>
-                <span class="menu-icon d-inline-block"><i class="fa fa-inbox"></i>
+                <span class="menu-icon d-inline-block"><i class="fas fa-inbox"></i>
                                   </span>
                             <span class="menu-text">Inbox</span>
                         </div>
@@ -17,7 +17,7 @@
             <div class="menu-item">
                 <a href="{{route('today')}}" class="py-2 menu-link justify-content-between @if(request()->route()->getName() == "today")bg-s_theme text-white fw-bold @endif">
                     <div>
-                <span class="menu-icon d-inline-block"><i class="fa fa-calendar-alt"></i>
+                <span class="menu-icon d-inline-block"><i class="fas fa-calendar-alt"></i>
                                   </span>
                         <span class="menu-text">Today</span>
                     </div>
@@ -69,7 +69,7 @@
                 <div class="menu-item">
                     <a href="{{url('labels/' . $label->id)}}" class="menu-link justify-content-between">
                         <div>
-                <span class="menu-icon d-inline-block"><i class="fa fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
+                <span class="menu-icon d-inline-block"><i class="fas fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
                                   </span>
                         <span class="menu-text">{{$label->name}}</span>
                         </div>

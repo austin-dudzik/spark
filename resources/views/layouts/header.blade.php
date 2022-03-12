@@ -6,7 +6,7 @@
     </div>
     <div class="menu">
         <form class="menu-search" method="get" action="{{url('/search')}}">
-            <div class="menu-search-icon"><i class="fa fa-search text-white"></i></div>
+            <div class="menu-search-icon"><i class="fas fa-search text-white"></i></div>
             <div class="menu-search-input">
                 <input type="text" name="q" class="form-control text-white" placeholder="Search tasks..."
                        value="{{ request('q') }}" aria-label="Search">
@@ -21,13 +21,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-                    <i class="fa fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task
+                    <i class="fas fa-task fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task
                 </a>
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal">
-                    <i class="fa fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label
+                    <i class="fas fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label
                 </a>
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newNoteModal">
-                    <i class="fa fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note
+                    <i class="fas fa-note fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Note
                 </a>
             </div>
 
@@ -117,12 +117,12 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
                 <a class="dropdown-item d-flex align-items-center" href="{{route('profile')}}">Profile <i
-                        class="fa fa-user-circle fa-fw ms-auto text-dark text-opacity-50"></i></a>
+                        class="fas fa-user-circle fa-fw ms-auto text-dark text-opacity-50"></i></a>
                 <a class="dropdown-item d-flex align-items-center" href="{{route('settings')}}">Settings <i
-                        class="fa fa-cog fa-fw ms-auto text-dark text-opacity-50"></i></a>
+                        class="fas fa-cog fa-fw ms-auto text-dark text-opacity-50"></i></a>
                 <div class="dropdown-divider"></div>
                 <a href="{{route('logout')}}" class="dropdown-item d-flex align-items-center" onclick="event.preventDefault();$('#logout-form').submit()">Log out
-                    <i class="fa fa-key fa-fw ms-auto text-dark text-opacity-50"></i>
+                    <i class="fas fa-key fa-fw ms-auto text-dark text-opacity-50"></i>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                     @csrf
