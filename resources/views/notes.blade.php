@@ -8,7 +8,7 @@
         <h1 class="fw-bolder h3">
             <i class="fas fa-notes me-2"></i> Notes
         </h1>
-        <p>What will you accomplish today?</p>
+        <p>Keep note of what's important and have it handy at all times.</p>
 
         <div class="row grid">
             @forelse ($notes as $note)

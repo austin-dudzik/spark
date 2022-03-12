@@ -10,7 +10,7 @@
                 <h1 class="fw-bolder h3">
                     <i class="fas fa-calendar-alt me-2"></i> Today
                 </h1>
-                <p>What will you accomplish today?</p>
+                <p>A look into what you've got going on today.</p>
             </div>
             <div>
                 <x-view-selector></x-view-selector>

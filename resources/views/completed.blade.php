@@ -10,7 +10,7 @@
                 <h1 class="fw-bolder h3">
                     <i class="fas fa-check-circle me-2"></i> Completed
                 </h1>
-                <p>What will you accomplish today?</p>
+                <p>Explore all you've accomplished already on {{ config('app.name', 'Laravel') }}.</p>
             </div>
             <div>
                 <x-view-selector></x-view-selector>
