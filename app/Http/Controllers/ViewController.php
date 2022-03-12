@@ -19,7 +19,9 @@ class ViewController extends Controller
         ]);
 
         // Update the user's view
-        View::query()->find(Auth::id())->update([
+        View::query()->
+        where('user_id', '=', Auth::id())->
+        update([
             'sort_by' => $request->sort_by,
             'order_by' => $request->order,
             'task_view' => $request->view
