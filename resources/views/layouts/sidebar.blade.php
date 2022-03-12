@@ -65,8 +65,8 @@
             </div>
 
             <div class="mb-4">
-            @foreach($labels as $label)
-                <div class="menu-item ">
+            @forelse($labels as $label)
+                <div class="menu-item">
                     <a href="{{url('labels/' . $label->id)}}" class="menu-link justify-content-between">
                         <div>
                 <span class="menu-icon d-inline-block"><i class="fa fa-tag fa-flip-horizontal" style="color:{{$label->color}}"></i>
@@ -78,11 +78,13 @@
                         @endif
                     </a>
                 </div>
-            @endforeach
+                @empty
+                <p class="small mb-0 text-muted mx-4">No labels here, yet.</p>
+            @endforelse
             </div>
 
             @if(auth()->user()->daily_goal > 0)
-            <div class="card mt-auto mx-3 p-2">
+            <div class="card mt-auto mx-3 p-2 mb-3">
                 <div class="card-body">
                     @php
                         $ratio = ceil(($tasksToday / auth()->user()->daily_goal) * 100);
