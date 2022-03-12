@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Label;
 use App\Models\Note;
 use App\Models\Task;
-use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -34,7 +33,7 @@ class SettingsController extends Controller
         ]);
 
         // Update the user's goals
-        User::query()->update(['daily_goal' => $request->daily_goal, 'weekly_goal' => $request->weekly_goal]);
+        Auth::user()->update(['daily_goal' => $request->daily_goal, 'weekly_goal' => $request->weekly_goal]);
 
         // Redirect with success
         return redirect('/settings')->with('success', 'Success, your goals have been updated.');
@@ -43,7 +42,7 @@ class SettingsController extends Controller
     public function updateTheme(Request $request)
     {
         // Update user theme
-        User::query()->update(['theme' => $request->theme]);
+        Auth::user()->update(['theme' => $request->theme]);
 
         // Redirect with success
         return redirect('settings')->with('success', 'Success, theme updated.');
@@ -58,7 +57,7 @@ class SettingsController extends Controller
         ]);
 
         // Update the account
-        User::query()->update($fields);
+        Auth::user()->update($fields);
 
         // Redirect with success
         return redirect('settings')->with('success', 'Success, your account has been updated.');
@@ -73,7 +72,7 @@ class SettingsController extends Controller
         ]);
 
         // Update the user's password
-        User::query()->update(['password' => bcrypt($request->new_password)]);
+        Auth::user()->update(['password' => bcrypt($request->new_password)]);
 
         // Redirect with success
         return redirect('settings')->with('success', 'Success, your password has been updated.');
@@ -88,7 +87,7 @@ class SettingsController extends Controller
         Label::query()->where('user_id', Auth::id())->delete();
 
         // Delete the account
-        User::query()->delete();
+        Auth::user()->query()->find(Auth::id())->delete();
 
         // Log the user out
         Auth::logout();
