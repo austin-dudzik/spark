@@ -26,7 +26,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right me-lg-3">
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-                    <i class="fas fa-task fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task
+                    <i class="fas fa-plus fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Task
                 </a>
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newLabelModal">
                     <i class="fas fa-tag fa-flip-horizontal fa-fw ms-auto text-dark text-opacity-50 me-1"></i> Label
