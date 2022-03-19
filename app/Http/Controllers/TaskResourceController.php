@@ -76,7 +76,7 @@ class TaskResourceController extends Controller
                 'title' => 'required',
                 'description' => 'present',
                 'label_id' => 'integer|min:0|nullable',
-                'due_date' => 'required'
+                'due_date' => 'date|nullable',
             ]);
             // Update the task
             $currentTask->update($fields);
